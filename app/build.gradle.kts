@@ -42,6 +42,7 @@ android {
         getByName("debug") {
             signingConfig = signingConfigs["debug_sign"]
             isMinifyEnabled = false
+            isDebuggable = true
         }
 
         getByName("release") {
@@ -52,6 +53,21 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "$rootDir/app/proguard-rules.pro"
             )
+        }
+    }
+
+    flavorDimensions += "version"
+    productFlavors {
+        create("dev") {
+            dimension = "version"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+        }
+
+        create("prod") {
+            dimension = "version"
+            applicationIdSuffix = ".prod"
+            versionNameSuffix = "-prod"
         }
     }
     compileOptions {
