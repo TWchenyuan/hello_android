@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
                     topMargin = 40.dp
                 }
                 text = name
+                isAllCaps = false
                 background = ContextCompat.getDrawable(this@MainActivity, R.drawable.button_background)
                 setTextColor(ContextCompat.getColor(this@MainActivity, R.color.black))
                 backgroundTintList = null
