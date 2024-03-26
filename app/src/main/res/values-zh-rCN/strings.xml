@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="button_1">按钮 1</string>
-    <string name="button_2">按钮 2</string>
-    <string name="button_3">按钮 3</string>
+    <string name="app_name">Hello Android</string>
+    <string name="button_name">按钮</string>
+    <string name="title">Android 练习</string>
 </resources>
