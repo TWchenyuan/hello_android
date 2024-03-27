@@ -46,6 +46,11 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, ConstraintActivity::class.java))
                 }
             }
+            if (it == 1) {
+                button.setOnClickListener {
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }
+            }
             layout.addView(button)
         }
     }
