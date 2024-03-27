@@ -4,4 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#FFA0A0A0</color>
     <color name="light">#CDD3FF</color>
+    <color name="border_color">#20000000</color>
+    <color name="edit_text">#e4e4e4</color>
+    <color name="black_text">#222222</color>
+    <color name="blue">#1f4ba5</color>
+    <color name="connect_color">#b2b2b2</color>
 </resources>

@@ -1,9 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:src="@mipmap/fill_1"
+        app:layout_constraintLeft_toLeftOf="@id/main"
+        app:layout_constraintRight_toRightOf="@id/main"
+        app:layout_constraintTop_toTopOf="@id/main" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/editor_text"
+        android:hint="@string/username_placeholder"
+        android:inputType="text"
+        android:padding="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/main"
+        app:layout_constraintRight_toRightOf="@id/main"
+        app:layout_constraintTop_toTopOf="@id/logo" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:background="@drawable/editor_text"
+        android:hint="@string/password_placeholder"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/main"
+        app:layout_constraintRight_toRightOf="@id/main"
+        app:layout_constraintTop_toBottomOf="@id/username" />
+
+    <CheckBox
+        android:id="@+id/remember_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22.5dp"
+        android:text="@string/remember_me"
+        android:textColor="@color/black_text"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22.5dp"
+        android:text="@string/forgot_password"
+        android:textColor="@color/black_text"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/remember_me"
+        app:layout_constraintRight_toRightOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22.5dp"
+        android:text="@string/login"
+        android:background="@drawable/login_button_background"
+        app:backgroundTint="@null"
+        app:layout_constraintLeft_toLeftOf="@id/username"
+        app:layout_constraintRight_toRightOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/remember_me" />
+
+    <TextView
+        android:id="@+id/connect_me_text"
+        android:textColor="@color/connect_color"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_tag"
+        android:layout_marginTop="26.5dp"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintLeft_toLeftOf="@id/main"
+        app:layout_constraintRight_toRightOf="@id/main">
+    </TextView>
+    <ImageButton
+        android:id="@+id/login_by_facebook"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="29.5dp"
+        android:src="@mipmap/fb"
+        app:layout_constraintLeft_toLeftOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/connect_me_text"
+        >
+
+    </ImageButton>
+
+    <ImageButton
+        android:id="@+id/login_by_twitter"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="29.5dp"
+        android:src="@mipmap/tw"
+        app:layout_constraintRight_toRightOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/connect_me_text"
+        >
+
+    </ImageButton>
+    <Button
+        android:id="@+id/sign_up_with_email"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="85.5dp"
+        android:text="@string/sign_up_with_e_mail"
+        app:backgroundTint="@null"
+        android:background="@drawable/sign_up_with_e_mail_button_background"
+        android:textColor="@color/blue"
+        app:layout_constraintTop_toBottomOf="@id/login_by_facebook"
+        app:layout_constraintLeft_toLeftOf="@id/main"
+        app:layout_constraintRight_toRightOf="@id/main"
+        >
+    </Button>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

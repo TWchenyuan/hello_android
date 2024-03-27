@@ -5,4 +5,10 @@
     <string name="hello" translatable="false">Hello!</string>
     <string name="sign_up" translatable="false">Signup</string>
     <string name="login" translatable="false">Login</string>
+    <string name="username_placeholder" translatable="false">Username</string>
+    <string name="password_placeholder" translatable="false">Password</string>
+    <string name="remember_me" translatable="false">Remember me</string>
+    <string name="forgot_password" translatable="false">Forgot password?</string>
+    <string name="connect_tag" translatable="false">or connect with</string>
+    <string name="sign_up_with_e_mail">Sign Up with E-mail</string>
 </resources>
