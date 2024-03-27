@@ -74,6 +74,7 @@
         android:layout_marginTop="22.5dp"
         android:text="@string/login"
         android:background="@drawable/login_button_background"
+        style="@style/CustomButtonStyle"
         app:backgroundTint="@null"
         app:layout_constraintLeft_toLeftOf="@id/username"
         app:layout_constraintRight_toRightOf="@id/username"
@@ -97,6 +98,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="29.5dp"
         android:src="@mipmap/fb"
+        style="@style/CustomButtonStyle"
         app:layout_constraintLeft_toLeftOf="@id/username"
         app:layout_constraintTop_toBottomOf="@id/connect_me_text"
         >
@@ -109,6 +111,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="29.5dp"
         android:src="@mipmap/tw"
+        style="@style/CustomButtonStyle"
         app:layout_constraintRight_toRightOf="@id/username"
         app:layout_constraintTop_toBottomOf="@id/connect_me_text"
         >
@@ -123,6 +126,7 @@
         app:backgroundTint="@null"
         android:background="@drawable/sign_up_with_e_mail_button_background"
         android:textColor="@color/blue"
+        style="@style/CustomButtonStyle"
         app:layout_constraintTop_toBottomOf="@id/login_by_facebook"
         app:layout_constraintLeft_toLeftOf="@id/main"
         app:layout_constraintRight_toRightOf="@id/main"
