@@ -1,5 +1,6 @@
 package com.thoughtworks.androidtrain
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
@@ -39,6 +40,11 @@ class MainActivity : AppCompatActivity() {
                 background = ContextCompat.getDrawable(this@MainActivity, R.drawable.button_background)
                 setTextColor(ContextCompat.getColor(this@MainActivity, R.color.black))
                 backgroundTintList = null
+            }
+            if (it == 4) {
+                button.setOnClickListener {
+                    startActivity(Intent(this, RelativeActivity::class.java))
+                }
             }
             layout.addView(button)
         }

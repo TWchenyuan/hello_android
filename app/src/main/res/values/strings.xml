@@ -2,4 +2,13 @@
     <string name="app_name">Hello Android</string>
     <string name="button_name">button</string>
     <string name="title">Android practice</string>
+    <string name="relative_title" translatable="false">相对布局</string>
+    <string name="relative_developer" translatable="false">程序员</string>
+    <string name="relative_teacher" translatable="false">程序员鼓励师</string>
+    <string name="relative_up" translatable="false">上</string>
+    <string name="relative_down" translatable="false">下</string>
+    <string name="relative_left" translatable="false">左</string>
+    <string name="relative_right" translatable="false">右</string>
+    <string name="relative_center" translatable="false">中间</string>
+    <string name="relative_ui_designer" translatable="false">UI设计师</string>
 </resources>
