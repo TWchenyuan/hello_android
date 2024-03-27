@@ -2,4 +2,7 @@
     <string name="app_name">Hello Android</string>
     <string name="button_name">button</string>
     <string name="title">Android practice</string>
+    <string name="hello" translatable="false">Hello!</string>
+    <string name="sign_up" translatable="false">Signup</string>
+    <string name="login" translatable="false">Login</string>
 </resources>
