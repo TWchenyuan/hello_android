@@ -55,6 +55,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    val Int.dp: Int
+    private val Int.dp: Int
         get() = (this * resources.displayMetrics.density).toInt()
 }
