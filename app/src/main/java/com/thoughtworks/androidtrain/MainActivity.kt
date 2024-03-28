@@ -28,9 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initButton() {
         val layout = findViewById<LinearLayout>(R.id.button_list)
+        val buttonNames = listOf("constraint", "login", "pick_contact")
         repeat(10) {
             val button = Button(this).apply {
-                val name = resources.getString(R.string.button_name) + " ${it + 1}"
+                val name = if (buttonNames.size > it) buttonNames[it] else resources.getString(R.string.button_name) + " ${it + 1}"
                 layoutParams = LayoutParams(250.dp, LayoutParams.WRAP_CONTENT).apply {
                     gravity = Gravity.CENTER
                     topMargin = 40.dp
