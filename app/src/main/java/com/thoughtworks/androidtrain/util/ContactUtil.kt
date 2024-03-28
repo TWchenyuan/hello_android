@@ -3,8 +3,9 @@ package com.thoughtworks.androidtrain.util
 import android.content.ContentResolver
 import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import android.provider.ContactsContract
-import java.net.URI
+import androidx.annotation.RequiresApi
 
 private fun Cursor.getColumnStringOrNull(contact: String): String? {
     return this.getColumnIndex(contact).let { index ->
@@ -12,6 +13,7 @@ private fun Cursor.getColumnStringOrNull(contact: String): String? {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun ContentResolver.fetchContact(uri: Uri): Pair<String, String>? {
     val cursor = this.query(uri, null, null, null)
     cursor?.let {

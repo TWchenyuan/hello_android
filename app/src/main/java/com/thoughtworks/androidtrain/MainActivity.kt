@@ -1,22 +1,14 @@
 package com.thoughtworks.androidtrain
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.Gravity
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
