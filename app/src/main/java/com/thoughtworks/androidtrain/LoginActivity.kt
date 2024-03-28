@@ -1,6 +1,7 @@
 package com.thoughtworks.androidtrain
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,5 +17,30 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("Login","LoginActivity started")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("Login","LoginActivity resumed")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("Login","LoginActivity stopped")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("Login","LoginActivity paused")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("Login","LoginActivity destroyed")
     }
 }
