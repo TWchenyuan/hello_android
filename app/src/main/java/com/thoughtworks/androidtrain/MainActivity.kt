@@ -94,6 +94,7 @@ class MainActivity : AppCompatActivity() {
             setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
+            setCancelable(false)
         }.create()
         dialog.show()
     }
