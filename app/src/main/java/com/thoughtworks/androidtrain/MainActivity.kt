@@ -1,6 +1,7 @@
 package com.thoughtworks.androidtrain
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -76,10 +77,26 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.PickContact()) {
             it?.let { uri ->
                 contentResolver.fetchContact(uri)?.let {
-                    Toast.makeText(this, "${it.first} ${it.second}", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "${it.first} ${it.second}", Toast.LENGTH_SHORT).show()
+                    showDialog(it.first, it.second)
                 }
             }
         }
+
+    private fun showDialog(name: String, phone: String) {
+        val dialog = AlertDialog.Builder(this).apply {
+            setMessage(
+                """
+                $name
+                $phone
+            """.trimIndent()
+            )
+            setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }.create()
+        dialog.show()
+    }
 
     private val Int.dp: Int
         get() = (this * resources.displayMetrics.density).toInt()
