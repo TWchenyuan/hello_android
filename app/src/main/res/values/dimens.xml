@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_size">12sp</dimen>
+    <dimen name="logo_button_width">120dp</dimen>
+    <dimen name="button_height">40dp</dimen>
+    <dimen name="button_width">250dp</dimen>
+</resources>
