@@ -1,4 +1,4 @@
-package com.thoughtworks.androidtrain
+package com.thoughtworks.androidtrain.tweet
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.thoughtworks.androidtrain.model.Tweet
+import com.thoughtworks.androidtrain.R
+import com.thoughtworks.androidtrain.tweet.model.Tweet
 
 class TweetsActivity : AppCompatActivity() {
     val gson = Gson()

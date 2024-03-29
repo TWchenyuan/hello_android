@@ -1,4 +1,4 @@
-package com.thoughtworks.androidtrain.model
+package com.thoughtworks.androidtrain.tweet.model
 
 
 class Tweet(

@@ -1,9 +1,10 @@
-package com.thoughtworks.androidtrain
+package com.thoughtworks.androidtrain.tweet
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.thoughtworks.androidtrain.model.Tweet
+import com.thoughtworks.androidtrain.R
+import com.thoughtworks.androidtrain.tweet.model.Tweet
 
 const val CURRENT_IN_FOOTER = 1
 
