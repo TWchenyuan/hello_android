@@ -41,7 +41,7 @@ class TweetsActivity : AppCompatActivity() {
             }
             val tweets: List<Tweet> =
                 gson.fromJson(jsonString, object : TypeToken<List<Tweet>>() {}.type)
-            tweets.filter { it.getError() == null }
+            tweets.filter { it.getError() == null && it.getSender() != null }
         } catch (e: Exception) {
             emptyList()
         }
