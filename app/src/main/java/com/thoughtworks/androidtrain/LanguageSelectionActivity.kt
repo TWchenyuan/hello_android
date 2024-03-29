@@ -21,6 +21,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
             insets
         }
         initialButtonListener()
+        showAndroidFragmentByDefault()
     }
 
     private fun initialButtonListener() {
@@ -38,5 +39,11 @@ class LanguageSelectionActivity : AppCompatActivity() {
                 .replace(R.id.content_view, javaFragment)
                 .commit()
         }
+    }
+    private fun showAndroidFragmentByDefault() {
+        val androidFragment = LongTextFragment(resources.getString(R.string.android_desc))
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content_view, androidFragment)
+            .commit()
     }
 }
