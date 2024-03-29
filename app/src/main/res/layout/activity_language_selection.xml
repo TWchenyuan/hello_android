@@ -12,8 +12,9 @@
         android:layout_width="@dimen/fragment_sidebar_width"
         android:layout_height="match_parent"
         android:background="@color/blue_background"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/content_view"
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -22,30 +23,25 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fragment_button_padding"
             android:background="@drawable/button_background"
-            android:textColor="@color/white"
-            android:text="@string/android" />
+            android:text="@string/android"
+            android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/java_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fragment_button_padding"
-            android:textColor="@color/white"
             android:background="@drawable/button_background"
-            android:text="@string/java"></androidx.appcompat.widget.AppCompatButton>
+            android:text="@string/java"
+            android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/content_view"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/left_view">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Android"></TextView>
-
-    </FrameLayout>
+        app:layout_constraintStart_toEndOf="@+id/left_view"></androidx.fragment.app.FragmentContainerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
