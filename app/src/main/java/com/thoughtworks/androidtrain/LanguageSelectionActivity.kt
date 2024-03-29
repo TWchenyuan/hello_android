@@ -24,53 +24,56 @@ class LanguageSelectionActivity : AppCompatActivity() {
         }
         initToolbar()
         initialButtonListener()
-        showAndroidFragmentByDefault()
+        showAndroidFragment()
     }
 
     private fun initialButtonListener() {
-        val androidFragment = LongTextFragment(resources.getString(R.string.android_desc))
-        val javaFragment = LongTextFragment(resources.getString(R.string.java_desc), Gravity.BOTTOM)
         val androidButton: Button = findViewById(R.id.android_button)
         androidButton.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.content_view, androidFragment)
-                .commit()
+            showAndroidFragment()
         }
         val javaButton: Button = findViewById(R.id.java_button)
         javaButton.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.content_view, javaFragment)
-                .commit()
+            showJavaFragment()
         }
     }
-    private fun showAndroidFragmentByDefault() {
+
+    private fun showAndroidFragment() {
         val androidFragment = LongTextFragment(resources.getString(R.string.android_desc))
         supportFragmentManager.beginTransaction()
             .replace(R.id.content_view, androidFragment)
             .commit()
     }
+
+    private fun showJavaFragment() {
+        val javaFragment = LongTextFragment(resources.getString(R.string.java_desc), Gravity.BOTTOM)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.content_view, javaFragment)
+            .commit()
+    }
+
     private fun initToolbar() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val androidFragment = LongTextFragment(resources.getString(R.string.android_desc))
-        val javaFragment = LongTextFragment(resources.getString(R.string.java_desc), Gravity.BOTTOM)
-        when(item.itemId) {
+        return when (item.itemId) {
             R.id.android_menu -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.content_view, androidFragment)
-                    .commit()
-            }
-            R.id.java_menu ->{
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.content_view, javaFragment)
-                    .commit()
+                showAndroidFragment()
+                true
             }
 
+            R.id.java_menu -> {
+                showJavaFragment()
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
