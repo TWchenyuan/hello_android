@@ -7,9 +7,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.thoughtworks.androidtrain.model.Tweet
 
 class TweetsActivity : AppCompatActivity() {
-    private val adapter = TweetAdapter(listOf("A" to "a", "B" to "b"))
+    val gson = Gson()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,6 +28,22 @@ class TweetsActivity : AppCompatActivity() {
     private fun initialTweetList() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = TweetAdapter(tweetsFromJson())
         recyclerView.adapter = adapter
+    }
+
+    private fun tweetsFromJson(): List<Tweet> {
+        return try {
+            val jsonString = assets.open("tweets_data.json").use {
+                it.bufferedReader().use {
+                    it.readText()
+                }
+            }
+            val tweets: List<Tweet> =
+                gson.fromJson(jsonString, object : TypeToken<List<Tweet>>() {}.type)
+            tweets.filter { it.getError() == null }
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
 }
