@@ -7,6 +7,6 @@
     <dimen name="fragment_sidebar_width">190dp</dimen>
     <dimen name="fragment_button_padding">10dp</dimen>
     <dimen name="large_size">12sp</dimen>
-    <dimen name="text_padding">20dp</dimen>
+    <dimen name="twenty_padding">20dp</dimen>
     <dimen name="ten_padding">10dp</dimen>
 </resources>

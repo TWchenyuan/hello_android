@@ -21,5 +21,6 @@ and tablets.</string>
         Java is a High Level, class-based, object-oriented programming language that is designed to have
 as few implementation dependencies as possible.
     </string>
+    <string name="already_bottom">到底了</string>
 
 </resources>
