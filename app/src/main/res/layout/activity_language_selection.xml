@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fragment_button_padding"
             android:background="@drawable/button_background"
+            android:textAllCaps="false"
             android:text="@string/android"
             android:textColor="@color/white" />
 
@@ -41,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fragment_button_padding"
+            android:textAllCaps="false"
             android:background="@drawable/button_background"
             android:text="@string/java"
             android:textColor="@color/white" />
