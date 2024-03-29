@@ -7,15 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".LanguageSelectionActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/left_view"
         android:layout_width="@dimen/fragment_sidebar_width"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="@color/blue_background"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@id/content_view"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/android_button"
@@ -33,15 +43,15 @@
             android:layout_margin="@dimen/fragment_button_padding"
             android:background="@drawable/button_background"
             android:text="@string/java"
-            android:textColor="@color/white"></androidx.appcompat.widget.AppCompatButton>
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/content_view"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/left_view"></androidx.fragment.app.FragmentContainerView>
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/left_view"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/left_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
