@@ -8,7 +8,7 @@ import com.thoughtworks.androidtrain.tweet.model.Tweet
 
 const val CURRENT_IN_FOOTER = 1
 
-class TweetAdapter(private val tweets: List<Tweet>) : RecyclerView.Adapter<TweetHolder>() {
+class TweetAdapter(private var tweets: List<Tweet>) : RecyclerView.Adapter<TweetHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetHolder {
         val res = when (viewType) {
             CURRENT_IN_FOOTER -> R.layout.tweet_footer
@@ -18,6 +18,9 @@ class TweetAdapter(private val tweets: List<Tweet>) : RecyclerView.Adapter<Tweet
             LayoutInflater.from(parent.context).inflate(res, parent, false),
             viewType == CURRENT_IN_FOOTER
         )
+    }
+    fun rebuild() {
+        this.tweets = tweets.shuffled()
     }
 
     override fun getItemCount(): Int = tweets.size + 1
