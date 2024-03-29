@@ -5,13 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.thoughtworks.androidtrain.model.Tweet
 
-class TweetAdapter(private val tweets: List<Tweet>) : RecyclerView.Adapter<TweetHolder>() {
+class TweetAdapter(private var tweets: List<Tweet>) : RecyclerView.Adapter<TweetHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetHolder {
         return TweetHolder(
             LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.tweet_item, parent, false)
         )
+    }
+
+    fun rebuild() {
+        this.tweets = tweets.shuffled()
     }
 
     override fun getItemCount(): Int = tweets.size
