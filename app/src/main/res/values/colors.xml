@@ -9,4 +9,5 @@
     <color name="black_text">#222222</color>
     <color name="blue">#1f4ba5</color>
     <color name="connect_color">#b2b2b2</color>
+    <color name="blue_background">#007aff</color>
 </resources>

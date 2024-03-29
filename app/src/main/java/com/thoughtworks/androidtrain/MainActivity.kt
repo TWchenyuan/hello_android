@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.FragmentActivity
 import com.thoughtworks.androidtrain.util.fetchContact
 
 class MainActivity : AppCompatActivity() {
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             "fragment" -> View.OnClickListener {
-                startActivity(Intent(this, FragmentActivity::class.java))
+                startActivity(Intent(this, LanguageSelectionActivity::class.java))
             }
 
             else -> null

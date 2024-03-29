@@ -10,5 +10,8 @@
     <string name="remember_me" translatable="false">Remember me</string>
     <string name="forgot_password" translatable="false">Forgot password?</string>
     <string name="connect_tag" translatable="false">or connect with</string>
-    <string name="sign_up_with_e_mail">Sign Up with E-mail</string>
+    <string name="sign_up_with_e_mail" translatable="false">Sign Up with E-mail</string>
+    <string name="android">Android</string>
+    <string name="java">Java</string>
+
 </resources>

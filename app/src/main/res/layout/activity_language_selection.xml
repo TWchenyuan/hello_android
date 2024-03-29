@@ -7,4 +7,45 @@
     android:layout_height="match_parent"
     tools:context=".LanguageSelectionActivity">
 
+    <LinearLayout
+        android:id="@+id/left_view"
+        android:layout_width="@dimen/fragment_sidebar_width"
+        android:layout_height="match_parent"
+        android:background="@color/blue_background"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/android_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fragment_button_padding"
+            android:background="@drawable/button_background"
+            android:textColor="@color/white"
+            android:text="@string/android" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/java_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fragment_button_padding"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background"
+            android:text="@string/java"></androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/left_view">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Android"></TextView>
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
