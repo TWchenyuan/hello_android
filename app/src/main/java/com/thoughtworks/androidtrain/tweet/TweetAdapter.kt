@@ -1,12 +1,9 @@
 package com.thoughtworks.androidtrain.tweet
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.request.ErrorResult
-import coil.request.ImageRequest
 import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 
