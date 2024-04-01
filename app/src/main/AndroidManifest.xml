@@ -16,6 +16,9 @@
         android:theme="@style/Theme.HelloAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".ThreadActivity"
+            android:exported="false" />
+        <activity
             android:name=".tweet.TweetsActivity"
             android:exported="false" />
         <activity

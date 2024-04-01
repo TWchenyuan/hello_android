@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initButton() {
         val layout = findViewById<LinearLayout>(R.id.button_list)
-        val buttonNames = listOf("constraint", "login", "pick_contact", "fragment", "RecyclerView")
+        val buttonNames =
+            listOf("constraint", "login", "pick_contact", "fragment", "RecyclerView", "thread")
         repeat(10) {
             val name =
                 if (buttonNames.size > it) buttonNames[it] else resources.getString(R.string.button_name) + " ${it + 1}"
@@ -75,8 +76,13 @@ class MainActivity : AppCompatActivity() {
             "fragment" -> View.OnClickListener {
                 startActivity(Intent(this, LanguageSelectionActivity::class.java))
             }
+
             "RecyclerView" -> View.OnClickListener {
                 startActivity(Intent(this, TweetsActivity::class.java))
+            }
+
+            "thread" -> View.OnClickListener {
+                startActivity(Intent(this, ThreadActivity::class.java))
             }
 
             else -> null
