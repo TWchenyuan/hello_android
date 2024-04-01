@@ -1,8 +1,12 @@
 package com.thoughtworks.androidtrain.tweet
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.request.ErrorResult
+import coil.request.ImageRequest
 import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 
@@ -19,6 +23,7 @@ class TweetAdapter(private var tweets: List<Tweet>) : RecyclerView.Adapter<Tweet
             viewType == CURRENT_IN_FOOTER
         )
     }
+
     fun rebuild() {
         this.tweets = tweets.shuffled()
     }
@@ -30,6 +35,12 @@ class TweetAdapter(private var tweets: List<Tweet>) : RecyclerView.Adapter<Tweet
             val tweet = tweets[position]
             holder.nickView?.text = tweet.getSender()?.nick
             holder.contentView?.text = tweet.getContent()
+            tweet.getSender()?.avatar?.let {
+                holder.avatarView?.load(it) {
+                    crossfade(true)
+                    placeholder(R.mipmap.avatar)
+                }
+            }
         }
     }
 

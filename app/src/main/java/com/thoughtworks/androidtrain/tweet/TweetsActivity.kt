@@ -18,7 +18,6 @@ import com.thoughtworks.androidtrain.tweet.model.Tweet
 
 class TweetsActivity : AppCompatActivity() {
     private val gson = Gson()
-    private val adapter = TweetAdapter(tweetsFromJson())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,9 +43,6 @@ class TweetsActivity : AppCompatActivity() {
                 refreshLayout.isRefreshing = false
             }
         }
-    }
-
-    private fun initRefresh() {
     }
 
     private fun tweetsFromJson(): List<Tweet> {

@@ -8,11 +8,12 @@
 
     <ImageView
         android:id="@+id/avatar_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/ten_padding"
         android:paddingTop="@dimen/ten_padding"
-        android:src="@mipmap/avatar"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toStartOf="@id/text_linear_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/text_linear_layout"
