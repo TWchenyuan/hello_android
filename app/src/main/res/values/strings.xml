@@ -23,5 +23,10 @@ as few implementation dependencies as possible.
     </string>
     <string name="already_bottom" translatable="false">到底了</string>
     <string name="counter_value" translatable="false">0</string>
+    <string name="promotion_text" translatable="false">提示信息：\n点击“知道了”不再提示。</string>
+    <string name="yes" translatable="false">知道了</string>
+    <string name="preference_show_key" translatable="false">com.thoughtworks.androidtrain.PREFERENCE_SHOW_KEY</string>
+    <string name="is_hint_show" translatable="false">isHintShow</string>
+    <string name="welcome_back">欢迎您回来</string>
 
 </resources>
