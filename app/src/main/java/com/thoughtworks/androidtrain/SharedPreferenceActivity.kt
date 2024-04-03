@@ -54,13 +54,14 @@ class SharedPreferenceActivity : AppCompatActivity() {
                 /**
                  * commit()是同步的，会阻塞主线程，有返回值，会立即更改内存中的对象值，返回成功结果
                  */
-                if (this.commit()) {
-                    this@SharedPreferenceActivity.finish()
-                }
+//                if (this.commit()) {
+//                    this@SharedPreferenceActivity.finish()
+//                }
                 /**
                  * apply是异步的，原子性，不阻塞线程
                  */
-//                apply()
+                apply()
+                this@SharedPreferenceActivity.finish()
             }
         }
     }
