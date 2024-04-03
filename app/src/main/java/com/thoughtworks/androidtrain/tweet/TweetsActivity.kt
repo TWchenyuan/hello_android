@@ -39,8 +39,8 @@ class TweetsActivity : AppCompatActivity() {
             val tweets = withContext(Dispatchers.IO) {
                 val db = TweetDatabase.dbInstance(applicationContext)
                 db.clearAllTables()
-                val tweetRepository: TweetRepository = TweetRepositoryImpl(db)
-                tweetRepository.fetchTweets(applicationContext).toList().first()
+                val tweetRepository: TweetRepository = TweetRepositoryImpl(db, applicationContext)
+                tweetRepository.fetchTweets().toList().first()
             }
             initialTweetList(tweets)
         }

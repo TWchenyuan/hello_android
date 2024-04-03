@@ -8,16 +8,16 @@ import com.thoughtworks.androidtrain.tweet.TweetDatabase
 import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 
 class TweetRepositoryImpl(
     private val database: TweetDatabase,
+    private val context: Context,
 ) : TweetRepository {
     private val gson = Gson()
     private val tweetDao = database.tweetDao()
     private val senderDao = database.senderDao()
-    override fun fetchTweets(context: Context): Flow<List<Tweet>> {
+    override fun fetchTweets(): Flow<List<Tweet>> {
         setupTweetsFromJson(context)
 
         return flow {
