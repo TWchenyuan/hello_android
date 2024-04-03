@@ -19,6 +19,7 @@ import com.thoughtworks.androidtrain.tweet.model.Tweet
 import com.thoughtworks.androidtrain.tweet.repository.TweetRepository
 import com.thoughtworks.androidtrain.tweet.repository.TweetRepositoryImpl
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,7 +41,7 @@ class TweetsActivity : AppCompatActivity() {
                 val db = TweetDatabase.dbInstance(applicationContext)
                 db.clearAllTables()
                 val tweetRepository: TweetRepository = TweetRepositoryImpl(db, applicationContext)
-                tweetRepository.fetchTweets().toList().first()
+                tweetRepository.fetchTweets().first()
             }
             initialTweetList(tweets)
         }
