@@ -90,6 +90,8 @@ dependencies {
     implementation(libs.coil.kt.coil)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
