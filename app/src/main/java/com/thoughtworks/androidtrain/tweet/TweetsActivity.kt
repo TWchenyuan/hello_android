@@ -60,19 +60,4 @@ class TweetsActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun tweetsFromJson(): List<Tweet> {
-        return try {
-            val jsonString = resources.openRawResource(R.raw.tweets_data).use {
-                it.bufferedReader().use {
-                    it.readText()
-                }
-            }
-            val tweets: List<Tweet> =
-                gson.fromJson(jsonString, object : TypeToken<List<Tweet>>() {}.type)
-            tweets.filter { it.error == null && it.sender != null }
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
 }
