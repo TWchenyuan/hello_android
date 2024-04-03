@@ -47,7 +47,7 @@ class TweetsActivity : AppCompatActivity() {
 
     private fun tweetsFromJson(): List<Tweet> {
         return try {
-            val jsonString = assets.open("tweets_data.json").use {
+            val jsonString = resources.openRawResource(R.raw.tweets_data).use {
                 it.bufferedReader().use {
                     it.readText()
                 }
