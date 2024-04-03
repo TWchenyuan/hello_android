@@ -1,7 +1,6 @@
 package com.thoughtworks.androidtrain
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.TextView
@@ -12,12 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.internal.wait
 
 class DataStoreActivity : AppCompatActivity() {
     private val button = lazy { findViewById<AppCompatButton>(R.id.ok_button) }
@@ -40,7 +35,7 @@ class DataStoreActivity : AppCompatActivity() {
         }
         lifecycleScope.launch {
             preferences.value.collect {
-                handleHint(it)
+                setupHint(it)
             }
         }
         handleClick {
@@ -50,7 +45,7 @@ class DataStoreActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleHint(preferences: DataStoreActivityPreferences?) {
+    private fun setupHint(preferences: DataStoreActivityPreferences?) {
         if (preferences?.isHintShow == true) {
             textView.value.text = getString(R.string.welcome_back)
             button.value.apply {
