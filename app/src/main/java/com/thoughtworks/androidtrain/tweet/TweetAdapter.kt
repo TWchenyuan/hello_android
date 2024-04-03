@@ -30,9 +30,9 @@ class TweetAdapter(private var tweets: List<Tweet>) : RecyclerView.Adapter<Tweet
     override fun onBindViewHolder(holder: TweetHolder, position: Int) {
         if (!holder.isFooter) {
             val tweet = tweets[position]
-            holder.nickView?.text = tweet.getSender()?.nick
-            holder.contentView?.text = tweet.getContent()
-            tweet.getSender()?.avatar?.let {
+            holder.nickView?.text = tweet.sender?.nick
+            holder.contentView?.text = tweet.content
+            tweet.sender?.avatar?.let {
                 holder.avatarView?.load(it) {
                     crossfade(true)
                     placeholder(R.mipmap.avatar)
