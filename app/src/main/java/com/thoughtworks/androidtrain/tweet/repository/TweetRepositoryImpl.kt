@@ -18,7 +18,7 @@ class TweetRepositoryImpl(
     private val tweetDao = database.tweetDao()
     private val senderDao = database.senderDao()
     override fun fetchTweets(): Flow<List<Tweet>> {
-        setupTweetsFromJson(context)
+        setupTweetsFromJson()
 
         return flow {
             emit(tweetDao.getTweetsWithSenders().map {
@@ -29,8 +29,8 @@ class TweetRepositoryImpl(
         }
     }
 
-    private fun setupTweetsFromJson(context: Context) {
-        val tweetStringList = getTweetsStringList(context)
+    private fun setupTweetsFromJson() {
+        val tweetStringList = getTweetsStringList()
         tweetStringList.forEach {
             val content = (it["content"] ?: "") as String
             val senderHash = it["sender"] as Map<*, *>
@@ -46,7 +46,7 @@ class TweetRepositoryImpl(
         }
     }
 
-    private fun getTweetsStringList(context: Context): List<Map<String, Any>> {
+    private fun getTweetsStringList(): List<Map<String, Any>> {
         return try {
             val jsonString = context.resources.openRawResource(R.raw.tweets_data).use {
                 it.bufferedReader().use {
