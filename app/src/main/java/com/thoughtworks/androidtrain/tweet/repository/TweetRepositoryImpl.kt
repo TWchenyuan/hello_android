@@ -30,8 +30,7 @@ class TweetRepositoryImpl(
     }
 
     private fun setupTweetsFromJson() {
-        val tweetStringList = getTweetsStringList()
-        tweetStringList.forEach {
+        getTweetsStringList().forEach {
             val content = (it["content"] ?: "") as String
             val senderHash = it["sender"] as Map<*, *>
             val sender = Sender(
