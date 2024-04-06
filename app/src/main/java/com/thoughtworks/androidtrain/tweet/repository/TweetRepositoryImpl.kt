@@ -7,6 +7,7 @@ import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.TweetDatabase
 import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
+import com.thoughtworks.androidtrain.tweet.model.TweetJson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -29,34 +30,47 @@ class TweetRepositoryImpl(
         }
     }
 
-    private fun setupTweetsFromJson() {
-        getTweetsStringList().forEach {
-            val content = (it["content"] ?: "") as String
-            val senderHash = it["sender"] as Map<*, *>
-            val sender = Sender(
-                userName = senderHash["username"] as String,
-                nick = senderHash["nick"] as String,
-                avatar = senderHash["avatar"] as String,
-            )
-            val tweet = Tweet(content = content, senderId = sender.id)
+    data class ValidTweet(
+        val content: String,
+        val sender: TweetJson.TweetSender,
+        val images: List<TweetJson.TweetImage>,
+        val comments: List<TweetJson.TweetComments>,
+    )
 
-            senderDao.insertSender(sender)
-            tweetDao.insertTweet(tweet)
-        }
+    private fun setupTweetsFromJson() {
+        getTweetsStringList()
+            .mapNotNull {
+                if (it.content == null || it.sender == null) null else ValidTweet(
+                    it.content,
+                    it.sender,
+                    it.images ?: emptyList(),
+                    it.comments ?: emptyList()
+                )
+            }
+            .forEach {
+                val sender = Sender(
+                    userName = it.sender.username,
+                    nick = it.sender.nick,
+                    avatar = it.sender.avatar,
+                )
+                val tweet = Tweet(content = it.content, senderId = sender.id)
+
+                senderDao.insertSender(sender)
+                tweetDao.insertTweet(tweet)
+            }
     }
 
-    private fun getTweetsStringList(): List<Map<String, Any>> {
+    private fun getTweetsStringList(): List<TweetJson> {
         return try {
             val jsonString = context.resources.openRawResource(R.raw.tweets_data).use {
                 it.bufferedReader().use {
                     it.readText()
                 }
             }
-            gson.fromJson<List<Map<String, Any>>?>(
+            gson.fromJson(
                 jsonString,
-                object : TypeToken<List<Map<String, Any>>>() {}.type
+                object : TypeToken<List<TweetJson>>() {}.type
             )
-                .filter { !it.containsKey("error") && it.containsKey("sender") }
         } catch (_: Exception) {
             emptyList()
         }
