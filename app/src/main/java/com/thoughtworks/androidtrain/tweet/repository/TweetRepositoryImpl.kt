@@ -19,7 +19,7 @@ class TweetRepositoryImpl(
     private val tweetDao = database.tweetDao()
     private val senderDao = database.senderDao()
     override fun fetchTweets(): Flow<List<Tweet>> {
-        setupTweetsFromJson()
+        updateTweets()
 
         return flow {
             emit(tweetDao.getTweetsWithSenders().map {
@@ -37,7 +37,7 @@ class TweetRepositoryImpl(
         val comments: List<TweetJson.TweetComments>,
     )
 
-    private fun setupTweetsFromJson() {
+    private fun updateTweets() {
         getTweetsStringList()
             .mapNotNull {
                 if (it.content == null || it.sender == null) null else ValidTweet(
