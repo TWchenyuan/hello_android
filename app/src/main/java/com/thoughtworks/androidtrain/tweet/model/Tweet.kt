@@ -19,6 +19,7 @@ data class Tweet(
     val id: String = UUID.randomUUID().toString(),
     @ColumnInfo("content")
     val content: String?,
+    @ColumnInfo("sender_id")
     val senderId: String,
 ) {
     @Ignore
