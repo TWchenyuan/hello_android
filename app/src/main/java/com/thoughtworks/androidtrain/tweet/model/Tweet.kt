@@ -12,13 +12,6 @@ import java.util.UUID
 
 @Entity(
     tableName = "tweet",
-    foreignKeys = [
-        ForeignKey(
-            entity = Sender::class,
-            parentColumns = ["id"],
-            childColumns = ["senderId"],
-        ),
-    ],
     indices = []
 )
 data class Tweet(
@@ -30,14 +23,6 @@ data class Tweet(
 ) {
     @Ignore
     var sender: Sender? = null
-
-    @Ignore
-    var error: String? = null
-
-    @com.google.gson.annotations.SerializedName("unknown error")
-    @Ignore
-    var unknownError: String? = null
-
 }
 
 data class TweetAndSender(
