@@ -3,6 +3,7 @@ package com.thoughtworks.androidtrain.tweet
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
@@ -22,10 +23,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class TweetsActivity : AppCompatActivity() {
-    private val gson = Gson()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,8 +39,16 @@ class TweetsActivity : AppCompatActivity() {
             val tweets = withContext(Dispatchers.IO) {
                 val db = TweetDatabase.dbInstance(applicationContext)
                 db.clearAllTables()
-                val tweetRepository: TweetRepository = TweetRepositoryImpl(db, applicationContext)
-                tweetRepository.fetchTweets().first()
+                val tweetRepository: TweetRepository = TweetRepositoryImpl(db)
+                try {
+                    tweetRepository.fetchTweets().first()
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@TweetsActivity, "Network Error:${e.message}", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    emptyList()
+                }
             }
             initialTweetList(tweets)
         }
