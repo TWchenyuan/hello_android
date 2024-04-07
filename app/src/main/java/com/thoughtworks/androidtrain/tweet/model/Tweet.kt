@@ -29,7 +29,7 @@ data class Tweet(
 data class TweetAndSender(
     @Embedded val tweet: Tweet,
     @Relation(
-        parentColumn = "senderId",
+        parentColumn = "sender_id",
         entityColumn = "id"
     )
     val sender: Sender,

@@ -2,22 +2,20 @@ package com.thoughtworks.androidtrain.tweet.repository
 
 import android.content.Context
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
-import com.thoughtworks.androidtrain.tweet.model.TweetJson
+import com.thoughtworks.androidtrain.tweet.network.TweetModel
+import com.thoughtworks.androidtrain.tweet.network.TweetNetworkDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class TweetRepositoryImpl(
     private val database: TweetDatabase,
-    private val context: Context,
 ) : TweetRepository {
-    private val gson = Gson()
     private val tweetDao = database.tweetDao()
     private val senderDao = database.senderDao()
-    override fun fetchTweets(): Flow<List<Tweet>> {
+    private val api = TweetNetworkDataSource()
+    override suspend fun fetchTweets(): Flow<List<Tweet>> {
         updateTweets()
 
         return flow {
@@ -31,13 +29,13 @@ class TweetRepositoryImpl(
 
     data class ValidTweet(
         val content: String,
-        val sender: TweetJson.TweetSender,
-        val images: List<TweetJson.TweetImage>,
-        val comments: List<TweetJson.TweetComments>,
+        val sender: TweetModel.TweetSender,
+        val images: List<TweetModel.TweetImage>,
+        val comments: List<TweetModel.TweetComments>,
     )
 
-    private fun updateTweets() {
-        getTweetsStringList()
+    private suspend fun updateTweets() {
+        this.api.fetchTweets()
             .mapNotNull {
                 if (it.content == null || it.sender == null) null else ValidTweet(
                     it.content,
@@ -57,21 +55,5 @@ class TweetRepositoryImpl(
                 senderDao.insertSender(sender)
                 tweetDao.insertTweet(tweet)
             }
-    }
-
-    private fun getTweetsStringList(): List<TweetJson> {
-        return try {
-            val jsonString = context.resources.openRawResource(R.raw.tweets_data).use {
-                it.bufferedReader().use {
-                    it.readText()
-                }
-            }
-            gson.fromJson(
-                jsonString,
-                object : TypeToken<List<TweetJson>>() {}.type
-            )
-        } catch (_: Exception) {
-            emptyList()
-        }
     }
 }
