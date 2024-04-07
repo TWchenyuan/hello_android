@@ -1,4 +1,4 @@
-package com.thoughtworks.androidtrain.tweet
+package com.thoughtworks.androidtrain.tweet.repository
 
 import android.content.Context
 import androidx.room.Database
