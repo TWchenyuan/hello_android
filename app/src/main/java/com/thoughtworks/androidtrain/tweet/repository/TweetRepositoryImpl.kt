@@ -1,12 +1,7 @@
 package com.thoughtworks.androidtrain.tweet.repository
 
-import android.content.Context
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
-import com.thoughtworks.androidtrain.tweet.model.TweetJson
 import com.thoughtworks.androidtrain.tweet.network.TweetModel
 import com.thoughtworks.androidtrain.tweet.network.TweetNetworkDataSource
 import kotlinx.coroutines.flow.Flow
