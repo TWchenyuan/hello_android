@@ -3,13 +3,10 @@ package com.thoughtworks.androidtrain.tweet
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 import com.thoughtworks.androidtrain.tweet.repository.TweetRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

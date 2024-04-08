@@ -1,8 +1,6 @@
 package com.thoughtworks.androidtrain.tweet.repository
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.thoughtworks.androidtrain.tweet.dao.SenderDao
 import com.thoughtworks.androidtrain.tweet.dao.TweetDao

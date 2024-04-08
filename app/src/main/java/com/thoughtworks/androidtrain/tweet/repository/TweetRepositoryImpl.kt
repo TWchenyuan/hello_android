@@ -15,7 +15,6 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.toList
 import javax.inject.Inject
 
 class TweetRepositoryImpl @Inject constructor(
