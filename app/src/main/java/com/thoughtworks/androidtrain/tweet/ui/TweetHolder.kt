@@ -1,4 +1,4 @@
-package com.thoughtworks.androidtrain.tweet
+package com.thoughtworks.androidtrain.tweet.ui
 
 import android.view.View
 import android.widget.ImageView

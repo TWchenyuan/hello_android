@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
@@ -16,8 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.thoughtworks.androidtrain.tweet.TweetsActivity
+import com.thoughtworks.androidtrain.tweet.ui.TweetsActivity
 import com.thoughtworks.androidtrain.util.fetchContact
+import kotlin.reflect.KClass
 
 class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -69,37 +71,20 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun handleClicker(key: String, button: Button) {
         val target = when (key) {
-            "constraint" -> View.OnClickListener {
-                startActivity(Intent(this, ConstraintActivity::class.java))
-            }
-
-            "login" -> View.OnClickListener {
-                startActivity(Intent(this, LoginActivity::class.java))
-            }
-
-            "pick_contact" -> View.OnClickListener {
-                contactSelectedLauncher.launch(null)
-            }
-
-            "fragment" -> View.OnClickListener {
-                startActivity(Intent(this, LanguageSelectionActivity::class.java))
-            }
-
-            "RecyclerView" -> View.OnClickListener {
-                startActivity(Intent(this, TweetsActivity::class.java))
-            }
-
-            "thread" -> View.OnClickListener {
-                startActivity(Intent(this, ThreadActivity::class.java))
-            }
-
-            "DataStore" -> View.OnClickListener {
-                startActivity(Intent(this, DataStoreActivity::class.java))
-            }
-
+            "constraint" -> View.OnClickListener { jumpToActivity(ConstraintActivity::class.java) }
+            "login" -> View.OnClickListener { jumpToActivity(LoginActivity::class.java) }
+            "pick_contact" -> View.OnClickListener { contactSelectedLauncher.launch(null) }
+            "fragment" -> View.OnClickListener { jumpToActivity(LanguageSelectionActivity::class.java) }
+            "RecyclerView" -> View.OnClickListener { jumpToActivity(TweetsActivity::class.java) }
+            "thread" -> View.OnClickListener { jumpToActivity(ThreadActivity::class.java) }
+            "DataStore" -> View.OnClickListener { jumpToActivity(DataStoreActivity::class.java) }
             else -> null
         }
         target?.let { button.setOnClickListener(it) }
+    }
+
+    private fun jumpToActivity(cls: Class<out AppCompatActivity>) {
+        startActivity(Intent(this, cls))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

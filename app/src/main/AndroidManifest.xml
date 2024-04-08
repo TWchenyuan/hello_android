@@ -25,7 +25,7 @@
             android:name=".ThreadActivity"
             android:exported="false" />
         <activity
-            android:name=".tweet.TweetsActivity"
+            android:name=".tweet.ui.TweetsActivity"
             android:exported="false" />
         <activity
             android:name=".LanguageSelectionActivity"
