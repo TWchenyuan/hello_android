@@ -38,7 +38,6 @@ class TweetsActivity : AppCompatActivity() {
 
         setupView()
         setupRefresh()
-
         viewModel.tweetsLiveData.observe(this) {
             adapter.updateTweets(it)
         }

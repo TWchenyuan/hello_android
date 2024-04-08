@@ -20,7 +20,7 @@ data class Tweet(
     @ColumnInfo("sender_id")
     val senderId: String,
     @ColumnInfo("create_at")
-    val createAt: Long
+    val createAt: Long,
 ) {
     @Ignore
     var sender: Sender? = null
@@ -34,6 +34,17 @@ data class TweetAndSender(
     )
     val sender: Sender,
 )
+
+fun TweetAndSender.asTweet(): Tweet {
+    return Tweet(
+        this.tweet.id,
+        this.tweet.content,
+        this.sender.id,
+        this.tweet.createAt
+    ).apply {
+        sender = this@asTweet.sender
+    }
+}
 
 data class TweetAndImages(
     @Embedded val tweet: Tweet,

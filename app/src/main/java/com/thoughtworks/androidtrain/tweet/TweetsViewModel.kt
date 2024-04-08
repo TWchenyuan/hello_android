@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.thoughtworks.androidtrain.tweet.model.Tweet
 import com.thoughtworks.androidtrain.tweet.repository.TweetRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,11 +19,9 @@ class TweetsViewModel @Inject constructor(
 ) : ViewModel() {
     private val _loadError = MutableLiveData(false)
     private val _loadErrorMessage = MutableLiveData<String?>()
+    private val _tweetLiveData = MutableLiveData<List<Tweet>>()
 
-    val tweetsLiveData = liveData {
-        val tweets = repository.fetchTweets().first()
-        emit(tweets)
-    }
+    val tweetsLiveData = _tweetLiveData
 
     val errorMessage: LiveData<String?>
         get() = _loadErrorMessage
@@ -34,10 +33,11 @@ class TweetsViewModel @Inject constructor(
     fun loadTweets() {
         viewModelScope.launch {
             try {
-                repository.loadTweets()
+                val newData = repository.loadTweets()
+                _tweetLiveData.value = newData
             } catch (e: Exception) {
-                _loadError.postValue(true)
-                _loadErrorMessage.postValue(e.message)
+                _loadError.value = true
+                _loadErrorMessage.value = e.message
             }
         }
     }
