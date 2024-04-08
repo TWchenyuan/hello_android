@@ -7,14 +7,15 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 import com.thoughtworks.androidtrain.tweet.model.TweetAndSender
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TweetDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTweet(tweet: Tweet)
+    suspend fun insertTweet(tweet: Tweet)
 
 
     @Transaction
     @Query("SELECT * FROM tweet")
-    fun getTweetsWithSenders(): List<TweetAndSender>
+    fun getTweetsWithSenders(): Flow<List<TweetAndSender>>
 }

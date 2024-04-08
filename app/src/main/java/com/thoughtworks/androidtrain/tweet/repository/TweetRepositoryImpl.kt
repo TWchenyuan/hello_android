@@ -1,34 +1,38 @@
 package com.thoughtworks.androidtrain.tweet.repository
 
+import com.thoughtworks.androidtrain.tweet.dao.SenderDao
+import com.thoughtworks.androidtrain.tweet.dao.TweetDao
 import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 import com.thoughtworks.androidtrain.tweet.network.TweetModel
-import com.thoughtworks.androidtrain.tweet.network.TweetNetworkDataSource
+import com.thoughtworks.androidtrain.tweet.network.TweetService
 import com.thoughtworks.androidtrain.util.safeToMill
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class TweetRepositoryImpl(
-    private val database: TweetDatabase,
+class TweetRepositoryImpl @Inject constructor(
+    private val tweetDao: TweetDao,
+    private val senderDao: SenderDao,
+    private val api: TweetService,
 ) : TweetRepository {
-    private val tweetDao = database.tweetDao()
-    private val senderDao = database.senderDao()
-    private val api = TweetNetworkDataSource().tweetApi()
     override fun fetchTweets(): Flow<List<Tweet>> {
-        return flow {
-            emit(tweetDao.getTweetsWithSenders()
-                .map {
-                    Tweet(
-                        it.tweet.id,
-                        it.tweet.content,
-                        it.sender.id,
-                        it.tweet.createAt
-                    ).apply {
-                        sender = it.sender
-                    }
+        return tweetDao.getTweetsWithSenders().map {
+            it.map {
+                Tweet(
+                    it.tweet.id,
+                    it.tweet.content,
+                    it.sender.id,
+                    it.tweet.createAt
+                ).apply {
+                    sender = it.sender
                 }
+            }
                 .applySortByCreatedAt()
-            )
         }
     }
 
@@ -47,7 +51,8 @@ class TweetRepositoryImpl(
     override suspend fun loadTweets() {
         this.api.getTweets()
             .mapNotNull {
-                val validTweet = if (it.content == null || it.sender == null) null else ValidTweet(
+                val validTweet = if (it.content == null || it.sender == null) null
+                else ValidTweet(
                     it.content,
                     it.sender,
                     it.images ?: emptyList(),
@@ -74,4 +79,12 @@ class TweetRepositoryImpl(
                 tweetDao.insertTweet(tweet)
             }
     }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class TweetRepositoryModule {
+
+    @Binds
+    abstract fun bindTweetRepository(repositoryImpl: TweetRepositoryImpl): TweetRepository
 }

@@ -13,7 +13,7 @@ interface SenderDao {
     fun insertSenders(vararg senders: Sender)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSender(sender: Sender)
+    suspend fun insertSender(sender: Sender)
 }
 
 

@@ -1,6 +1,5 @@
 package com.thoughtworks.androidtrain.tweet.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,20 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.TweetsViewModel
-import com.thoughtworks.androidtrain.tweet.repository.TweetDatabase
-import com.thoughtworks.androidtrain.tweet.repository.TweetRepositoryImpl
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TweetsActivity : AppCompatActivity() {
-    private val viewModel: TweetsViewModel by viewModels {
-        TweetsViewModelFactory(applicationContext)
-    }
+
+    private val viewModel: TweetsViewModel by viewModels()
     private val recyclerView = lazy {
         findViewById<RecyclerView>(R.id.recycler_view)
     }
@@ -51,6 +47,7 @@ class TweetsActivity : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun setupView() {
         recyclerView.value.layoutManager = LinearLayoutManager(this)
         recyclerView.value.adapter = this.adapter
@@ -65,16 +62,5 @@ class TweetsActivity : AppCompatActivity() {
                 refreshLayout.isRefreshing = false
             }
         }
-    }
-}
-
-class TweetsViewModelFactory(
-    private val context: Context,
-) : ViewModelProvider.NewInstanceFactory() {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val db = TweetDatabase.dbInstance(context)
-        val repository = TweetRepositoryImpl(db)
-        return TweetsViewModel(repository) as T
     }
 }
