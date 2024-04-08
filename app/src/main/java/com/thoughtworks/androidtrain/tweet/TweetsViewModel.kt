@@ -28,7 +28,7 @@ class TweetsViewModel(
         loadTweets()
     }
 
-    private fun loadTweets() {
+    fun loadTweets() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 repository.loadTweets()

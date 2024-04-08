@@ -2,10 +2,13 @@ package com.thoughtworks.androidtrain.tweet.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.postDelayed
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModel
@@ -22,6 +25,10 @@ class TweetsActivity : AppCompatActivity() {
     private val viewModel: TweetsViewModel by viewModels {
         TweetsViewModelFactory(applicationContext)
     }
+    private val recyclerView = lazy {
+        findViewById<RecyclerView>(R.id.recycler_view)
+    }
+    private val adapter = TweetAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,17 +40,30 @@ class TweetsActivity : AppCompatActivity() {
             insets
         }
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-//        val refreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
+        setupView()
+        setupRefresh()
 
         viewModel.tweetsLiveData.observe(this) {
-            val adapter = TweetAdapter(it)
-            recyclerView.adapter = adapter
+            adapter.updateTweets(it)
         }
 
         viewModel.errorMessage.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun setupView() {
+        recyclerView.value.layoutManager = LinearLayoutManager(this)
+        recyclerView.value.adapter = this.adapter
+    }
+
+    private fun setupRefresh() {
+        val refreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
+        refreshLayout.setOnRefreshListener {
+            recyclerView.value.adapter?.notifyDataSetChanged()
+            Handler(Looper.getMainLooper()).postDelayed(1000) {
+                viewModel.loadTweets()
+                refreshLayout.isRefreshing = false
+            }
         }
     }
 }
