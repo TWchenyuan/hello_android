@@ -5,6 +5,7 @@ data class TweetModel(
     val images: List<TweetImage>?,
     val sender: TweetSender?,
     val comments: List<TweetComments>?,
+    val date: String?
 ) {
 
     data class TweetImage(val url: String)

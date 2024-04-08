@@ -6,7 +6,6 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import androidx.room.Relation
-import java.util.UUID
 
 
 @Entity(
@@ -15,11 +14,13 @@ import java.util.UUID
 )
 data class Tweet(
     @PrimaryKey
-    val id: String = UUID.randomUUID().toString(),
+    val id: String,
     @ColumnInfo("content")
     val content: String?,
     @ColumnInfo("sender_id")
     val senderId: String,
+    @ColumnInfo("create_at")
+    val createAt: Long
 ) {
     @Ignore
     var sender: Sender? = null
