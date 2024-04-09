@@ -21,6 +21,7 @@ constraintlayout = "2.1.4"
 mockitoCore = "5.11.0"
 mockitoKotlin = "5.2.1"
 retrofit = "2.11.0"
+robolectric = "4.12"
 roomCompiler = "2.6.1"
 swiperefreshlayout = "1.1.0"
 truth = "1.4.2"
@@ -51,6 +52,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
