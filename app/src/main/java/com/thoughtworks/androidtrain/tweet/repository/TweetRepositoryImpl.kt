@@ -71,7 +71,7 @@ class TweetRepositoryImpl @Inject constructor(
                 senderDao.insertSender(sender)
                 tweetDao.insertTweet(tweet)
             }
-        return tweetDao.getTweetsWithSenders().map { it.map { it.asTweet() } }.first()
+        return this.fetchTweets().first()
     }
 }
 
