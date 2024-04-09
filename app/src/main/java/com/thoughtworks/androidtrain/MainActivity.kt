@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             val name =
                 if (buttonNames.size > it) buttonNames[it] else resources.getString(R.string.button_name) + " ${it + 1}"
             val button = Button(this).apply {
+                id = if (name == "login") R.id.login_button_view_id else View.generateViewId()
                 layoutParams = LayoutParams(250.dp, LayoutParams.WRAP_CONTENT).apply {
                     gravity = Gravity.CENTER
                     topMargin = 40.dp
