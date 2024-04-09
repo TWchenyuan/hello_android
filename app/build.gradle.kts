@@ -4,8 +4,8 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.googleDaggerHiltAndroid)
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
