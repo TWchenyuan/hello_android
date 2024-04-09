@@ -79,6 +79,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    @Suppress("UnstableApiUsage")
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -113,6 +118,7 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.androidx.core.testing)
 }
 
 kapt {
