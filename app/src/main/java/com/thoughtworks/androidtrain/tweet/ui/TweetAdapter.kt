@@ -1,11 +1,14 @@
 package com.thoughtworks.androidtrain.tweet.ui
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.model.Tweet
+import com.thoughtworks.androidtrain.util.formatDateString
 
 const val CURRENT_IN_FOOTER = 1
 
@@ -31,11 +34,13 @@ class TweetAdapter(
 
     override fun getItemCount(): Int = tweets.size + 1
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TweetHolder, position: Int) {
         if (!holder.isFooter) {
             val tweet = tweets[position]
             holder.nickView?.text = tweet.sender?.nick
             holder.contentView?.text = tweet.content
+            holder.createdAtView?.text = tweet.createAt.formatDateString()
             tweet.sender?.avatar?.let {
                 holder.avatarView?.load(it) {
                     crossfade(true)

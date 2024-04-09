@@ -3,21 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tweet_item"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/avatar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:paddingStart="@dimen/ten_padding"
         android:paddingTop="@dimen/ten_padding"
         android:scaleType="centerCrop"
-        android:adjustViewBounds="true"
         app:layout_constraintEnd_toStartOf="@id/text_linear_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_linear_layout"
-        />
+        app:layout_constraintTop_toTopOf="@id/text_linear_layout" />
 
     <LinearLayout
         android:id="@+id/text_linear_layout"
@@ -26,23 +24,34 @@
         android:orientation="vertical"
         android:paddingStart="@dimen/ten_padding"
         android:paddingTop="@dimen/ten_padding"
-        app:layout_constraintTop_toTopOf="@id/avatar_view"
         app:layout_constraintStart_toEndOf="@id/avatar_view"
-        >
+        app:layout_constraintTop_toTopOf="@id/avatar_view">
 
-        <TextView
-            android:id="@+id/nick_view"
-            android:textStyle="bold"
-            android:textSize="@dimen/large_size"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/nick_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_size"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/created_at_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_size" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/content_detail_view"
-            android:textSize="@dimen/large_size"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="start"
-            android:layout_height="wrap_content">
-        </TextView>
+            android:textSize="@dimen/large_size" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

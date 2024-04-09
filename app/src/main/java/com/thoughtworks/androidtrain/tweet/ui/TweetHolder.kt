@@ -11,4 +11,5 @@ class TweetHolder(itemView: View, val isFooter: Boolean) : RecyclerView.ViewHold
     val contentView: TextView? =
         if (!isFooter) itemView.findViewById(R.id.content_detail_view) else null
     val avatarView: ImageView? = if (!isFooter) itemView.findViewById(R.id.avatar_view) else null
+    val createdAtView: TextView? = if(!isFooter) itemView.findViewById(R.id.created_at_view) else null
 }
