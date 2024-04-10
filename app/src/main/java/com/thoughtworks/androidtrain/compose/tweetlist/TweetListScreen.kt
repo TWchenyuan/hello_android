@@ -27,7 +27,6 @@ fun TweetListScreen() {
 
 @Composable
 fun TweetListScreen(tweets: List<Tweet>) {
-    Log.i("test", "$tweets")
     LazyColumn(Modifier.fillMaxSize()) {
         itemsIndexed(tweets) { index, tweet ->
             TweetListItem(tweet)
