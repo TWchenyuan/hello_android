@@ -43,6 +43,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilVersion" }
 coil-kt-coil = { module = "io.coil-kt:coil", version.ref = "coilVersion" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
