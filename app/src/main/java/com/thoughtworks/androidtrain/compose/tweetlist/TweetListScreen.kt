@@ -21,7 +21,9 @@ import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 import java.time.Instant
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.thoughtworks.androidtrain.R
 
 @Composable
 fun TweetListScreen(viewModel: TweetsViewModel = hiltViewModel()) {
@@ -31,13 +33,14 @@ fun TweetListScreen(viewModel: TweetsViewModel = hiltViewModel()) {
 
 @Composable
 fun TweetListScreen(tweets: List<Tweet>) {
+    val context = LocalContext.current
     LazyColumn(Modifier.fillMaxSize()) {
         itemsIndexed(tweets) { index, tweet ->
             TweetListItem(tweet)
             Spacer(modifier = Modifier.height(8.dp))
             if (index == tweets.size - 1) {
                 Text(
-                    text = "到底了",
+                    text = context.getString(R.string.already_bottom),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodyLarge
