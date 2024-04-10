@@ -55,20 +55,22 @@ fun TweetListScreen(tweets: List<Tweet>) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun TweetListScreenPreview() {
-    TweetListScreen(listOf(Tweet(
-        id = "tweet_1",
-        content = "content",
-        senderId = "sender_1",
-        createAt = Instant.now().toEpochMilli()
+    TweetListScreen(
+        listOf(Tweet(
+            id = "tweet_1",
+            content = "content",
+            senderId = "sender_1",
+            createAt = Instant.now().toEpochMilli()
 
-    ).apply {
-        sender = Sender("sender_1", "john", "john", "avatar")
-    }, Tweet(
-        id = "tweet_2",
-        content = "content",
-        senderId = "sender_1",
-        createAt = Instant.now().toEpochMilli()
-    ).apply {
-        sender = Sender("sender_1", "john", "john", "avatar")
-    }))
+        ).apply {
+            sender = Sender("sender_1", "john", "john", "avatar")
+        }, Tweet(
+            id = "tweet_2",
+            content = "content",
+            senderId = "sender_1",
+            createAt = Instant.now().toEpochMilli()
+        ).apply {
+            sender = Sender("sender_1", "john", "john", "avatar")
+        })
+    )
 }

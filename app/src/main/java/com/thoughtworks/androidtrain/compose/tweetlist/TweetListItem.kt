@@ -46,12 +46,12 @@ fun TweetListItem(tweet: Tweet) {
                 .wrapContentWidth()
                 .padding(start = 10.dp)
         ) {
-            Text(text = tweet.sender?.nick ?: "",
-                style = MaterialTheme.typography.titleMedium
-                )
+            Text(
+                text = tweet.sender?.nick ?: "", style = MaterialTheme.typography.titleMedium
+            )
             Spacer(modifier = Modifier.width(10.dp))
-            Text(text = tweet.content ?: "",
-                style = MaterialTheme.typography.bodyMedium
+            Text(
+                text = tweet.content ?: "", style = MaterialTheme.typography.bodyMedium
             )
         }
     }
@@ -63,12 +63,9 @@ fun TweetListItem(tweet: Tweet) {
 @Preview(showBackground = true)
 fun TweetListItemPreview() {
     TweetListItem(tweet = Tweet(
-        id = "tweet_2",
-        content = """
+        id = "tweet_2", content = """
            content
-        """.trimIndent(),
-        senderId = "sender_1",
-        createAt = Instant.now().toEpochMilli()
+        """.trimIndent(), senderId = "sender_1", createAt = Instant.now().toEpochMilli()
     ).apply {
         sender = Sender(
             "sender_1",
