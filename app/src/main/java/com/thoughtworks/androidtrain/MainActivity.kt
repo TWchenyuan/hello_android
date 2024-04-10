@@ -4,12 +4,12 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
+import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -17,9 +17,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.thoughtworks.androidtrain.compose.TweetListComposeActivity
 import com.thoughtworks.androidtrain.tweet.ui.TweetsActivity
 import com.thoughtworks.androidtrain.util.fetchContact
-import kotlin.reflect.KClass
 
 class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity() {
                 "fragment",
                 "RecyclerView",
                 "thread",
-                "DataStore"
+                "DataStore",
+                "tweet_list_compose"
             )
         repeat(10) {
             val name =
@@ -79,12 +80,13 @@ class MainActivity : AppCompatActivity() {
             "RecyclerView" -> View.OnClickListener { jumpToActivity(TweetsActivity::class.java) }
             "thread" -> View.OnClickListener { jumpToActivity(ThreadActivity::class.java) }
             "DataStore" -> View.OnClickListener { jumpToActivity(DataStoreActivity::class.java) }
+            "tweet_list_compose" -> View.OnClickListener { jumpToActivity(TweetListComposeActivity::class.java) }
             else -> null
         }
         target?.let { button.setOnClickListener(it) }
     }
 
-    private fun jumpToActivity(cls: Class<out AppCompatActivity>) {
+    private fun jumpToActivity(cls: Class<out ComponentActivity>) {
         startActivity(Intent(this, cls))
     }
 

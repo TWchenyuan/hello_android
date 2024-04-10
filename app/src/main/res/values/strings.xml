@@ -26,5 +26,6 @@ as few implementation dependencies as possible.
     <string name="promotion_text" translatable="false">提示信息：\n点击“知道了”不再提示。</string>
     <string name="yes" translatable="false">知道了</string>
     <string name="welcome_back" translatable="false">欢迎您回来</string>
+    <string name="title_activity_tweet_list_compose">TweetListComposeActivity</string>
 
 </resources>

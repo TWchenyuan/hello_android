@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".HelloAndroidApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,8 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HelloAndroid"
-        android:name=".HelloAndroidApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".compose.TweetListComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tweet_list_compose"
+            android:theme="@style/Theme.HelloAndroid" />
         <activity
             android:name=".DataStoreActivity"
             android:exported="false" />
