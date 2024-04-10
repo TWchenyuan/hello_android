@@ -35,7 +35,7 @@ fun TweetListItem(tweet: Tweet) {
     ) {
         AsyncImage(
             model = tweet.sender?.avatar ?: "",
-            contentDescription = null,
+            contentDescription = "avatar",
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.mipmap.avatar),
             modifier = Modifier.size(100.dp)

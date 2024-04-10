@@ -1,7 +1,6 @@
 package com.thoughtworks.androidtrain.compose.tweetlist
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,17 +11,22 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.thoughtworks.androidtrain.tweet.TweetsViewModel
 import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 import java.time.Instant
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun TweetListScreen() {
-    TweetListScreen(tweets = emptyList())
+fun TweetListScreen(viewModel: TweetsViewModel = hiltViewModel()) {
+    val tweets by viewModel.tweetsLiveData.observeAsState(initial = emptyList())
+    TweetListScreen(tweets)
 }
 
 @Composable
