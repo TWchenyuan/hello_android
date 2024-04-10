@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -45,9 +46,13 @@ fun TweetListItem(tweet: Tweet) {
                 .wrapContentWidth()
                 .padding(start = 10.dp)
         ) {
-            Text(text = tweet.sender?.nick ?: "")
+            Text(text = tweet.sender?.nick ?: "",
+                style = MaterialTheme.typography.titleMedium
+                )
             Spacer(modifier = Modifier.width(10.dp))
-            Text(text = tweet.content ?: "")
+            Text(text = tweet.content ?: "",
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 }
