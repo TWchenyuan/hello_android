@@ -2,6 +2,7 @@ package com.thoughtworks.androidtrain.compose.tweetlist
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -37,6 +39,7 @@ import com.thoughtworks.androidtrain.tweet.TweetUiState
 @Composable
 fun TweetListItem(tweet: TweetUiState, onSaveComment: (comment: String) -> Unit = {}, onClickAvatar: (url: String) -> Unit = {}) {
     val showCommentEditorState = remember { mutableStateOf(false) }
+    val newCommentState = remember { mutableStateOf("") }
     Row(
         modifier =
         Modifier
@@ -75,11 +78,23 @@ fun TweetListItem(tweet: TweetUiState, onSaveComment: (comment: String) -> Unit 
                     showCommentEditorState.value = true
                 }
             )
+            Spacer(modifier = Modifier.width(10.dp))
+            if (newCommentState.value.isNotBlank()) {
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFFd3d3d3))) {
+                    Text(
+                        text = newCommentState.value,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
+            }
             if (showCommentEditorState.value) {
                 EditComment(
                     onSave = { comment ->
                         onSaveComment(comment)
                         showCommentEditorState.value = false
+                        newCommentState.value = comment
                     },
                     onCancel = {
                         showCommentEditorState.value = false

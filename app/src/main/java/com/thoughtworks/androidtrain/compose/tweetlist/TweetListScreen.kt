@@ -67,7 +67,7 @@ fun TweetListScreen(tweets: List<TweetUiState>, onSaveComment: (comment: String)
             )
             Spacer(modifier = Modifier.height(8.dp))
             if (index == tweets.size - 1) {
-                Text(
+               Text(
                     text = context.getString(R.string.already_bottom),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
