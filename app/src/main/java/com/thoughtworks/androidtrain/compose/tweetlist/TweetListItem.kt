@@ -21,7 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -36,11 +35,7 @@ import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.TweetUiState
 
 @Composable
-fun TweetListItem(
-    tweet: TweetUiState,
-    onSaveComment: (comment: String) -> Unit = {},
-    onClickAvatar: (url: String) -> Unit = {},
-) {
+fun TweetListItem(tweet: TweetUiState, onSaveComment: (comment: String) -> Unit = {}, onClickAvatar: (url: String) -> Unit = {}) {
     val showCommentEditorState = remember { mutableStateOf(false) }
     Row(
         modifier =
@@ -140,6 +135,6 @@ fun EditComment(onSave: (comment: String) -> Unit, onCancel: () -> Unit) {
 @Preview(showBackground = true)
 fun TweetListItemPreview() {
     TweetListItem(
-        TweetUiState("id", "content", "nick_name", "avatar_url", null),
+        TweetUiState("id", "content", "nick_name", "avatar_url", null)
     )
 }
