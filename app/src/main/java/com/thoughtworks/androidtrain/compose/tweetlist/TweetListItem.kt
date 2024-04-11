@@ -39,9 +39,8 @@ import com.thoughtworks.androidtrain.tweet.TweetUiState
 fun TweetListItem(
     tweet: TweetUiState,
     showCommentEditorState: MutableState<Boolean> = remember { mutableStateOf(false) },
-    commentState: MutableState<String> = remember { mutableStateOf("") },
     onSaveComment: (comment: String) -> Unit = {},
-    onClickAvatar: (url: String) -> Unit = {}
+    onClickAvatar: (url: String) -> Unit = {},
 ) {
     Row(
         modifier =
@@ -83,7 +82,6 @@ fun TweetListItem(
             )
             if (showCommentEditorState.value) {
                 EditComment(
-                    commentState,
                     onSave = { comment ->
                         onSaveComment(comment)
                         showCommentEditorState.value = false
@@ -98,7 +96,10 @@ fun TweetListItem(
 }
 
 @Composable
-fun EditComment(commentState: MutableState<String>, onSave: (comment: String) -> Unit, onCancel: () -> Unit) {
+fun EditComment(onSave: (comment: String) -> Unit, onCancel: () -> Unit) {
+    val commentState = remember {
+        mutableStateOf("")
+    }
     BasicTextField(
         value = commentState.value,
         onValueChange = {
@@ -144,7 +145,7 @@ fun TweetListItemPreview() {
         remember {
             mutableStateOf(false)
         },
-        commentState =
+        newCommentState =
         remember {
             mutableStateOf("")
         }
