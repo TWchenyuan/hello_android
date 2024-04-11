@@ -40,11 +40,14 @@ import com.thoughtworks.androidtrain.R
 @Composable
 fun TweetListScreen(viewModel: TweetsViewModel = hiltViewModel()) {
     val tweets by viewModel.tweetsLiveData.observeAsState(initial = emptyList())
-    TweetListScreen(tweets)
+    TweetListScreen(
+        tweets = tweets,
+        onSaveComment = { comment -> viewModel.saveComment(comment) }
+    )
 }
 
 @Composable
-fun TweetListScreen(tweets: List<Tweet>) {
+fun TweetListScreen(tweets: List<Tweet>, onSaveComment: (comment: String) -> Unit) {
     val context = LocalContext.current
     val previewImageState = remember {
         mutableStateOf(true)
@@ -54,7 +57,12 @@ fun TweetListScreen(tweets: List<Tweet>) {
     }
     LazyColumn(Modifier.fillMaxSize()) {
         itemsIndexed(tweets) { index, tweet ->
-            TweetListItem(tweet, previewImageState, previewImageUrlState)
+            TweetListItem(
+                tweet,
+                previewImageState,
+                previewImageUrlState,
+                onSaveComment = onSaveComment
+            )
             Spacer(modifier = Modifier.height(8.dp))
             if (index == tweets.size - 1) {
                 Text(
@@ -121,5 +129,5 @@ private fun TweetListScreenPreview() {
         ).apply {
             sender = Sender("sender_1", "john", "john", "avatar")
         })
-    )
+    ) {}
 }

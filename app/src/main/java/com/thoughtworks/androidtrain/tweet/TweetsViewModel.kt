@@ -38,4 +38,8 @@ class TweetsViewModel @Inject constructor(
             }
         }
     }
+
+    fun saveComment(comment: String) {
+        //TODO save to database
+    }
 }
