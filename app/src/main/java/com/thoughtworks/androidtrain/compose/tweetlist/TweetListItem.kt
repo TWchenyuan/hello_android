@@ -141,9 +141,5 @@ fun EditComment(onSave: (comment: String) -> Unit, onCancel: () -> Unit) {
 fun TweetListItemPreview() {
     TweetListItem(
         TweetUiState("id", "content", "nick_name", "avatar_url", null),
-        showCommentEditorState =
-        remember {
-            mutableStateOf(false)
-        },
     )
 }
