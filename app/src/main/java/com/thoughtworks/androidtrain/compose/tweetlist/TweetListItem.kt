@@ -2,6 +2,7 @@ package com.thoughtworks.androidtrain.compose.tweetlist
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,9 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -27,7 +31,11 @@ import com.thoughtworks.androidtrain.tweet.model.Tweet
 import java.time.Instant
 
 @Composable
-fun TweetListItem(tweet: Tweet) {
+fun TweetListItem(
+    tweet: Tweet,
+    previewImageState: MutableState<Boolean>,
+    previewImageUrlState: MutableState<String>,
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -38,7 +46,12 @@ fun TweetListItem(tweet: Tweet) {
             contentDescription = "avatar",
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.mipmap.avatar),
-            modifier = Modifier.size(100.dp)
+            modifier = Modifier
+                .size(100.dp)
+                .clickable {
+                    previewImageState.value = true
+                    previewImageUrlState.value = tweet.sender?.avatar ?: ""
+                },
         )
         Column(
             modifier = Modifier
@@ -62,16 +75,22 @@ fun TweetListItem(tweet: Tweet) {
 @Composable
 @Preview(showBackground = true)
 fun TweetListItemPreview() {
-    TweetListItem(tweet = Tweet(
-        id = "tweet_2", content = """
+    TweetListItem(
+        tweet = Tweet(
+            id = "tweet_2", content = """
            content
         """.trimIndent(), senderId = "sender_1", createAt = Instant.now().toEpochMilli()
-    ).apply {
-        sender = Sender(
-            "sender_1",
-            "john",
-            "john",
-            "https://c-ssl.dtstatic.com/uploads/blog/202104/02/20210402200403_1e37e.thumb.1000_0.jpeg"
-        )
-    })
+        ).apply {
+            sender = Sender(
+                "sender_1",
+                "john",
+                "john",
+                "https://c-ssl.dtstatic.com/uploads/blog/202104/02/20210402200403_1e37e.thumb.1000_0.jpeg"
+            )
+        },
+        previewImageState = remember { mutableStateOf(false) },
+        previewImageUrlState = remember {
+            mutableStateOf("")
+        }
+    )
 }
