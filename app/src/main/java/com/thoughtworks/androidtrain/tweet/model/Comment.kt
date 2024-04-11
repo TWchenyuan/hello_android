@@ -8,21 +8,21 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "comment",
-    foreignKeys = [ForeignKey(
-        entity = Sender::class,
-        parentColumns = ["id"],
-        childColumns = ["id"],
-    )],
+    foreignKeys = [
+        ForeignKey(
+            entity = Sender::class,
+            parentColumns = ["id"],
+            childColumns = ["id"]
+        )
+    ],
     indices = []
-
 )
 data class Comment(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     @ColumnInfo(name = "content")
-    val content: String,
+    val content: String
 ) {
     @Ignore
     val sender: Sender? = null
 }
-

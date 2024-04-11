@@ -18,15 +18,14 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class MainActivityInstrumentedTest {
-
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
     fun setup() {
         Intents.init()
-
     }
+
     @After
     fun tearDown() {
         Intents.release()

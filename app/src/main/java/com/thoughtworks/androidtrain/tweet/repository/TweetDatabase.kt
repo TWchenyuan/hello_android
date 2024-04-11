@@ -12,5 +12,6 @@ import com.thoughtworks.androidtrain.tweet.model.Tweet
 @Database(entities = [Tweet::class, Sender::class, Image::class, Comment::class], version = 1)
 abstract class TweetDatabase : RoomDatabase() {
     abstract fun tweetDao(): TweetDao
+
     abstract fun senderDao(): SenderDao
 }

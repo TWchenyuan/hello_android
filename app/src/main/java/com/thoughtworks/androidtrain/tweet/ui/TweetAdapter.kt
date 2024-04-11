@@ -13,13 +13,14 @@ import com.thoughtworks.androidtrain.util.formatDateString
 const val CURRENT_IN_FOOTER = 1
 
 class TweetAdapter(
-    private var tweets: MutableList<Tweet> = mutableListOf(),
+    private var tweets: MutableList<Tweet> = mutableListOf()
 ) : RecyclerView.Adapter<TweetHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetHolder {
-        val res = when (viewType) {
-            CURRENT_IN_FOOTER -> R.layout.tweet_footer
-            else -> R.layout.tweet_item
-        }
+        val res =
+            when (viewType) {
+                CURRENT_IN_FOOTER -> R.layout.tweet_footer
+                else -> R.layout.tweet_item
+            }
         return TweetHolder(
             LayoutInflater.from(parent.context).inflate(res, parent, false),
             viewType == CURRENT_IN_FOOTER

@@ -8,13 +8,13 @@ import com.thoughtworks.androidtrain.tweet.model.Tweet
 import com.thoughtworks.androidtrain.tweet.model.TweetAndSender
 import com.thoughtworks.androidtrain.tweet.network.TweetService
 import com.thoughtworks.androidtrain.tweet.repository.TweetRepositoryImpl
+import java.time.Instant
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
-import java.time.Instant
 
 class TweetRepositoryImplTest {
     private val tweetDao: TweetDao = mock()
@@ -27,34 +27,35 @@ class TweetRepositoryImplTest {
         val now = Instant.now()
         val olderDate = now.minusSeconds(10).toEpochMilli()
         val newerDate = now.minusSeconds(1).toEpochMilli()
-        val sender_1 = Sender("sender_id", "john", "john", "avatar")
+        val sender1 = Sender("sender_id", "john", "john", "avatar")
 
         `when`(tweetDao.getTweetsWithSenders()).thenReturn(
             flowOf(
                 listOf(
                     TweetAndSender(
-                        tweet = Tweet(
+                        tweet =
+                        Tweet(
                             id = "tweet_1",
                             content = "first content",
                             createAt = olderDate,
                             senderId = "sender_id"
                         ),
-                        sender_1
+                        sender1
                     ),
                     TweetAndSender(
-                        tweet = Tweet(
+                        tweet =
+                        Tweet(
                             id = "tweet_2",
                             content = "second content",
                             createAt = newerDate,
                             senderId = "sender_id"
                         ),
-                        sender_1
+                        sender1
                     )
                 )
             )
         )
         val tweets = repository.fetchTweets().first()
-
 
         assertThat(tweets).isNotNull()
         assertThat(tweets).hasSize(2)

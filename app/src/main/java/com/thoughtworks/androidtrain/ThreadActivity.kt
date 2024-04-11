@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class ThreadActivity : AppCompatActivity() {
     private lateinit var button: AppCompatButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

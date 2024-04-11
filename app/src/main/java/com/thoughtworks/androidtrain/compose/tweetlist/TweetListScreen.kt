@@ -19,25 +19,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.thoughtworks.androidtrain.tweet.TweetsViewModel
-import com.thoughtworks.androidtrain.tweet.model.Sender
-import com.thoughtworks.androidtrain.tweet.model.Tweet
-import java.time.Instant
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.tweet.TweetUiState
+import com.thoughtworks.androidtrain.tweet.TweetsViewModel
 
 @Composable
 fun TweetListScreen(viewModel: TweetsViewModel = hiltViewModel()) {
@@ -51,12 +48,14 @@ fun TweetListScreen(viewModel: TweetsViewModel = hiltViewModel()) {
 @Composable
 fun TweetListScreen(tweets: List<TweetUiState>, onSaveComment: (comment: String) -> Unit) {
     val context = LocalContext.current
-    val previewImageState = remember {
-        mutableStateOf(true)
-    }
-    val previewImageUrlState = remember {
-        mutableStateOf("")
-    }
+    val previewImageState =
+        remember {
+            mutableStateOf(true)
+        }
+    val previewImageUrlState =
+        remember {
+            mutableStateOf("")
+        }
     LazyColumn(Modifier.fillMaxSize().padding(top = 10.dp)) {
         itemsIndexed(tweets) { index, tweet ->
             TweetListItem(
@@ -85,15 +84,16 @@ fun TweetListScreen(tweets: List<TweetUiState>, onSaveComment: (comment: String)
 @Composable
 fun PreviewImage(url: String, onClosePreviewImage: () -> Unit) {
     Box(
-        modifier = Modifier
+        modifier =
+        Modifier
             .fillMaxSize()
             .background(Color.Black.copy(0.5f))
             .clickable { onClosePreviewImage() },
-        contentAlignment = Alignment.Center,
+        contentAlignment = Alignment.Center
     ) {
-
         Box(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .background(Color.White)
                 .size(300.dp),
             contentAlignment = Alignment.Center
@@ -102,7 +102,8 @@ fun PreviewImage(url: String, onClosePreviewImage: () -> Unit) {
                 model = url,
                 contentDescription = "preview avatar",
                 placeholder = painterResource(id = R.mipmap.avatar),
-                modifier = Modifier
+                modifier =
+                Modifier
                     .size(250.dp)
                     .clip(CircleShape)
             )

@@ -19,11 +19,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TweetsActivity : AppCompatActivity() {
-
     private val viewModel: TweetsViewModel by viewModels()
-    private val recyclerView = lazy {
-        findViewById<RecyclerView>(R.id.recycler_view)
-    }
+    private val recyclerView =
+        lazy {
+            findViewById<RecyclerView>(R.id.recycler_view)
+        }
     private val adapter = TweetAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface TweetRepository {
     fun fetchTweets(): Flow<List<Tweet>>
+
     suspend fun loadTweets(): List<Tweet>
 }

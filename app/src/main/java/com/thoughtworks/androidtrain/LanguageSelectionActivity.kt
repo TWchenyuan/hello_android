@@ -39,6 +39,7 @@ class LanguageSelectionActivity : AppCompatActivity() {
                 .commit()
         }
     }
+
     private fun showAndroidFragmentByDefault() {
         val androidFragment = LongTextFragment(resources.getString(R.string.android_desc))
         supportFragmentManager.beginTransaction()

@@ -21,26 +21,26 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.i("Login","LoginActivity started")
+        Log.i("Login", "LoginActivity started")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.i("Login","LoginActivity resumed")
+        Log.i("Login", "LoginActivity resumed")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i("Login","LoginActivity stopped")
+        Log.i("Login", "LoginActivity stopped")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i("Login","LoginActivity paused")
+        Log.i("Login", "LoginActivity paused")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.i("Login","LoginActivity destroyed")
+        Log.i("Login", "LoginActivity destroyed")
     }
 }

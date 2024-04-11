@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object TweetDatabaseModule {
-
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(

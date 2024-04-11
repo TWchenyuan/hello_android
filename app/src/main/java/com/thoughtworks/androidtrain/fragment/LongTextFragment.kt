@@ -9,12 +9,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.thoughtworks.androidtrain.R
 
-
 class LongTextFragment(
     private val text: String,
     private val gravity: Int = Gravity.TOP
 ) : Fragment() {
     private lateinit var textView: TextView
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

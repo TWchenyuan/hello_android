@@ -12,15 +12,17 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class TweetRepositoryImpl @Inject constructor(
+class TweetRepositoryImpl
+@Inject
+constructor(
     private val tweetDao: TweetDao,
     private val senderDao: SenderDao,
-    private val api: TweetService,
+    private val api: TweetService
 ) : TweetRepository {
     override fun fetchTweets(): Flow<List<Tweet>> {
         return tweetDao.getTweetsWithSenders()
@@ -38,35 +40,41 @@ class TweetRepositoryImpl @Inject constructor(
         val sender: TweetModel.TweetSender,
         val images: List<TweetModel.TweetImage>,
         val comments: List<TweetModel.TweetComments>,
-        val createAt: Long,
+        val createAt: Long
     )
 
     override suspend fun loadTweets(): List<Tweet> {
         this.api.getTweets()
             .mapNotNull {
-                val validTweet = if (it.content == null || it.sender == null) null
-                else ValidTweet(
-                    it.content,
-                    it.sender,
-                    it.images ?: emptyList(),
-                    it.comments ?: emptyList(),
-                    it.date?.safeToMill() ?: System.currentTimeMillis()
-                )
+                val validTweet =
+                    if (it.content == null || it.sender == null) {
+                        null
+                    } else {
+                        ValidTweet(
+                            it.content,
+                            it.sender,
+                            it.images ?: emptyList(),
+                            it.comments ?: emptyList(),
+                            it.date?.safeToMill() ?: System.currentTimeMillis()
+                        )
+                    }
                 validTweet
             }
             .forEachIndexed { index, it ->
-                val sender = Sender(
-                    id = "sender_${it.sender.nick}_${index}",
-                    userName = it.sender.username,
-                    nick = it.sender.nick,
-                    avatar = it.sender.avatar,
-                )
-                val tweet = Tweet(
-                    id = "tweet_${index}",
-                    content = it.content,
-                    senderId = sender.id,
-                    createAt = it.createAt
-                )
+                val sender =
+                    Sender(
+                        id = "sender_${it.sender.nick}_$index",
+                        userName = it.sender.username,
+                        nick = it.sender.nick,
+                        avatar = it.sender.avatar
+                    )
+                val tweet =
+                    Tweet(
+                        id = "tweet_$index",
+                        content = it.content,
+                        senderId = sender.id,
+                        createAt = it.createAt
+                    )
 
                 senderDao.insertSender(sender)
                 tweetDao.insertTweet(tweet)
@@ -78,7 +86,6 @@ class TweetRepositoryImpl @Inject constructor(
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class TweetRepositoryModule {
-
     @Binds
     abstract fun bindTweetRepository(repositoryImpl: TweetRepositoryImpl): TweetRepository
 }

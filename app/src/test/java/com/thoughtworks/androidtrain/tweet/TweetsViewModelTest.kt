@@ -6,16 +6,14 @@ import com.thoughtworks.androidtrain.MainDispatcherRule
 import com.thoughtworks.androidtrain.tweet.model.Sender
 import com.thoughtworks.androidtrain.tweet.model.Tweet
 import com.thoughtworks.androidtrain.tweet.repository.TweetRepository
+import java.time.Instant
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when`
-import java.time.Instant
-
 
 class TweetsViewModelTest {
-
     private val mockedRepository: TweetRepository = mock()
     private lateinit var tweetsViewModel: TweetsViewModel
 
@@ -75,5 +73,4 @@ class TweetsViewModelTest {
         assertThat(tweetsViewModel.errorMessage.value).isNotNull()
         assertThat(tweetsViewModel.errorMessage.value).contains("test error message")
     }
-
 }

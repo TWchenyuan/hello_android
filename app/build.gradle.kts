@@ -31,16 +31,16 @@ android {
         keyStoreProperties.load(FileInputStream(file))
         create("debug_sign") {
             keyAlias = keyStoreProperties["debugKeyAlias"] as String
-            keyPassword = keyStoreProperties["debugKeyPassword"]  as String
-            storeFile = rootProject.file(keyStoreProperties["debugStoreFile"]  as String)
-            storePassword = keyStoreProperties["debugStorePassword"]  as String
+            keyPassword = keyStoreProperties["debugKeyPassword"] as String
+            storeFile = rootProject.file(keyStoreProperties["debugStoreFile"] as String)
+            storePassword = keyStoreProperties["debugStorePassword"] as String
         }
 
         create("release_sign") {
             keyAlias = keyStoreProperties["releaseKeyAlias"] as String
-            keyPassword = keyStoreProperties["releaseKeyPassword"]  as String
-            storeFile = rootProject.file(keyStoreProperties["releaseStoreFile"]  as String)
-            storePassword = keyStoreProperties["releaseStorePassword"]  as String
+            keyPassword = keyStoreProperties["releaseKeyPassword"] as String
+            storeFile = rootProject.file(keyStoreProperties["releaseStoreFile"] as String)
+            storePassword = keyStoreProperties["releaseStorePassword"] as String
         }
     }
 
@@ -160,5 +160,5 @@ kapt {
     correctErrorTypes = true
 }
 ktlint {
-    android.set(true)
+    android = true
 }

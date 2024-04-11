@@ -14,7 +14,6 @@ interface TweetDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTweet(tweet: Tweet)
 
-
     @Transaction
     @Query("SELECT * FROM tweet")
     fun getTweetsWithSenders(): Flow<List<TweetAndSender>>

@@ -17,12 +17,13 @@ import kotlinx.coroutines.launch
 class DataStoreActivity : AppCompatActivity() {
     private val button = lazy { findViewById<AppCompatButton>(R.id.ok_button) }
     private val textView = lazy { findViewById<TextView>(R.id.promotion_view) }
-    private val preferences = lazy {
-        applicationContext.dataStore.data.map {
-            val isHintShow = it[DataStoreActivityPreferencesKeys.IS_HINT_SHOW] ?: false
-            DataStoreActivityPreferences(isHintShow)
+    private val preferences =
+        lazy {
+            applicationContext.dataStore.data.map {
+                val isHintShow = it[DataStoreActivityPreferencesKeys.IS_HINT_SHOW] ?: false
+                DataStoreActivityPreferences(isHintShow)
+            }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

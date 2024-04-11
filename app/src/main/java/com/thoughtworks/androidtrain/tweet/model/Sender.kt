@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "sender")
 data class Sender(
     @PrimaryKey
@@ -14,6 +13,5 @@ data class Sender(
     @ColumnInfo(name = "nick")
     val nick: String,
     @ColumnInfo(name = "avatar")
-    val avatar: String,
+    val avatar: String
 )
-

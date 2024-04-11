@@ -42,10 +42,11 @@ fun TweetListItem(
     previewImageUrlState: MutableState<String>,
     showCommentEditorState: MutableState<Boolean> = remember { mutableStateOf(false) },
     commentState: MutableState<String> = remember { mutableStateOf("") },
-    onSaveComment: (comment: String) -> Unit = {},
+    onSaveComment: (comment: String) -> Unit = {}
 ) {
     Row(
-        modifier = Modifier
+        modifier =
+        Modifier
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
@@ -54,31 +55,33 @@ fun TweetListItem(
             contentDescription = "avatar",
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.mipmap.avatar),
-            modifier = Modifier
+            modifier =
+            Modifier
                 .size(100.dp)
                 .clickable {
                     previewImageState.value = true
                     previewImageUrlState.value = tweet.avatar
-                },
+                }
         )
         Column(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxHeight()
                 .wrapContentWidth()
                 .padding(start = 10.dp)
         ) {
             Text(
                 text = tweet.nick,
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleMedium
             )
             Spacer(modifier = Modifier.width(10.dp))
             Text(
                 text = tweet.content,
                 style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.clickable {
+                modifier =
+                Modifier.clickable {
                     showCommentEditorState.value = true
                 }
-
             )
             if (showCommentEditorState.value) {
                 EditComment(
@@ -89,7 +92,8 @@ fun TweetListItem(
                     },
                     onCancel = {
                         showCommentEditorState.value = false
-                    })
+                    }
+                )
             }
         }
     }
@@ -99,12 +103,15 @@ fun TweetListItem(
 fun EditComment(
     commentState: MutableState<String>,
     onSave: (comment: String) -> Unit,
-    onCancel: () -> Unit,
+    onCancel: () -> Unit
 ) {
-    BasicTextField(value = commentState.value, onValueChange = {
-        commentState.value = it
-    },
-        modifier = Modifier
+    BasicTextField(
+        value = commentState.value,
+        onValueChange = {
+            commentState.value = it
+        },
+        modifier =
+        Modifier
             .height(35.dp)
             .fillMaxWidth()
             .border(
@@ -114,7 +121,8 @@ fun EditComment(
         decorationBox = { textFiled ->
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .weight(1f)
                         .padding(start = 2.dp)
                 ) {
@@ -132,7 +140,6 @@ fun EditComment(
     )
 }
 
-
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 @Preview(showBackground = true)
@@ -140,15 +147,17 @@ fun TweetListItemPreview() {
     TweetListItem(
         TweetUiState("id", "content", "nick_name", "avatar_url", null),
         previewImageState = remember { mutableStateOf(false) },
-        previewImageUrlState = remember {
+        previewImageUrlState =
+        remember {
             mutableStateOf("")
         },
-        showCommentEditorState = remember {
+        showCommentEditorState =
+        remember {
             mutableStateOf(false)
         },
-        commentState = remember {
+        commentState =
+        remember {
             mutableStateOf("")
         }
-
     )
 }

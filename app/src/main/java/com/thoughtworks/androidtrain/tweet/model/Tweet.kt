@@ -7,7 +7,6 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-
 @Entity(
     tableName = "tweet",
     indices = []
@@ -20,7 +19,7 @@ data class Tweet(
     @ColumnInfo("sender_id")
     val senderId: String,
     @ColumnInfo("create_at")
-    val createAt: Long,
+    val createAt: Long
 ) {
     @Ignore
     var sender: Sender? = null
@@ -32,7 +31,7 @@ data class TweetAndSender(
         parentColumn = "sender_id",
         entityColumn = "id"
     )
-    val sender: Sender,
+    val sender: Sender
 )
 
 fun TweetAndSender.asTweet(): Tweet {
@@ -52,7 +51,7 @@ data class TweetAndImages(
         parentColumn = "tweet_id",
         entityColumn = "image_tweet_id"
     )
-    val images: List<Image>,
+    val images: List<Image>
 )
 
 data class TweetAndComments(
@@ -61,5 +60,5 @@ data class TweetAndComments(
         parentColumn = "tweet_id",
         entityColumn = "comment_tweet_id"
     )
-    val comments: List<Comment>,
+    val comments: List<Comment>
 )
