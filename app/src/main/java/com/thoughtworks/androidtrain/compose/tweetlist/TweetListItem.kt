@@ -98,7 +98,8 @@ fun TweetListItem(
 @Composable
 fun EditComment(
     commentState: MutableState<String>,
-    onSave: (comment: String) -> Unit, onCancel: () -> Unit,
+    onSave: (comment: String) -> Unit,
+    onCancel: () -> Unit,
 ) {
     BasicTextField(value = commentState.value, onValueChange = {
         commentState.value = it

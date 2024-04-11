@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleDaggerHiltAndroid)
+    alias(libs.plugins.jlleitschuhGradleKtlint)
     kotlin("kapt")
 }
 
@@ -157,4 +158,7 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+ktlint {
+    android.set(true)
 }
