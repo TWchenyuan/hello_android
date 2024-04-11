@@ -33,13 +33,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.thoughtworks.androidtrain.R
-import com.thoughtworks.androidtrain.tweet.model.Sender
-import com.thoughtworks.androidtrain.tweet.model.Tweet
-import java.time.Instant
+import com.thoughtworks.androidtrain.tweet.TweetUiState
 
 @Composable
 fun TweetListItem(
-    tweet: Tweet,
+    tweet: TweetUiState,
     previewImageState: MutableState<Boolean>,
     previewImageUrlState: MutableState<String>,
     showCommentEditorState: MutableState<Boolean> = remember { mutableStateOf(false) },
@@ -52,7 +50,7 @@ fun TweetListItem(
             .wrapContentHeight()
     ) {
         AsyncImage(
-            model = tweet.sender?.avatar ?: "",
+            model = tweet.avatar,
             contentDescription = "avatar",
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.mipmap.avatar),
@@ -60,7 +58,7 @@ fun TweetListItem(
                 .size(100.dp)
                 .clickable {
                     previewImageState.value = true
-                    previewImageUrlState.value = tweet.sender?.avatar ?: ""
+                    previewImageUrlState.value = tweet.avatar
                 },
         )
         Column(
@@ -70,12 +68,12 @@ fun TweetListItem(
                 .padding(start = 10.dp)
         ) {
             Text(
-                text = tweet.sender?.nick ?: "",
+                text = tweet.nick,
                 style = MaterialTheme.typography.titleMedium,
             )
             Spacer(modifier = Modifier.width(10.dp))
             Text(
-                text = tweet.content ?: "",
+                text = tweet.content,
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.clickable {
                     showCommentEditorState.value = true
@@ -139,18 +137,7 @@ fun EditComment(
 @Preview(showBackground = true)
 fun TweetListItemPreview() {
     TweetListItem(
-        tweet = Tweet(
-            id = "tweet_2", content = """
-           content
-        """.trimIndent(), senderId = "sender_1", createAt = Instant.now().toEpochMilli()
-        ).apply {
-            sender = Sender(
-                "sender_1",
-                "john",
-                "john",
-                "https://c-ssl.dtstatic.com/uploads/blog/202104/02/20210402200403_1e37e.thumb.1000_0.jpeg"
-            )
-        },
+        TweetUiState("id", "content", "nick_name", "avatar_url", null),
         previewImageState = remember { mutableStateOf(false) },
         previewImageUrlState = remember {
             mutableStateOf("")
