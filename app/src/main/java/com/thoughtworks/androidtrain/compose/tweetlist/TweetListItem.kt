@@ -145,9 +145,5 @@ fun TweetListItemPreview() {
         remember {
             mutableStateOf(false)
         },
-        newCommentState =
-        remember {
-            mutableStateOf("")
-        }
     )
 }
