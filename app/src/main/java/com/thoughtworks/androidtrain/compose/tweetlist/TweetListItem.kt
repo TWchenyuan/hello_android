@@ -38,11 +38,10 @@ import com.thoughtworks.androidtrain.tweet.TweetUiState
 @Composable
 fun TweetListItem(
     tweet: TweetUiState,
-    previewImageState: MutableState<Boolean>,
-    previewImageUrlState: MutableState<String>,
     showCommentEditorState: MutableState<Boolean> = remember { mutableStateOf(false) },
     commentState: MutableState<String> = remember { mutableStateOf("") },
-    onSaveComment: (comment: String) -> Unit = {}
+    onSaveComment: (comment: String) -> Unit = {},
+    onClickAvatar: (url: String) -> Unit = {},
 ) {
     Row(
         modifier =
@@ -59,8 +58,7 @@ fun TweetListItem(
             Modifier
                 .size(100.dp)
                 .clickable {
-                    previewImageState.value = true
-                    previewImageUrlState.value = tweet.avatar
+                    onClickAvatar(tweet.avatar)
                 }
         )
         Column(
@@ -146,11 +144,6 @@ fun EditComment(
 fun TweetListItemPreview() {
     TweetListItem(
         TweetUiState("id", "content", "nick_name", "avatar_url", null),
-        previewImageState = remember { mutableStateOf(false) },
-        previewImageUrlState =
-        remember {
-            mutableStateOf("")
-        },
         showCommentEditorState =
         remember {
             mutableStateOf(false)

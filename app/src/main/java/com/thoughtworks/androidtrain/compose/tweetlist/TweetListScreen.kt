@@ -48,21 +48,21 @@ fun TweetListScreen(viewModel: TweetsViewModel = hiltViewModel()) {
 @Composable
 fun TweetListScreen(tweets: List<TweetUiState>, onSaveComment: (comment: String) -> Unit) {
     val context = LocalContext.current
-    val previewImageState =
-        remember {
-            mutableStateOf(true)
-        }
     val previewImageUrlState =
         remember {
             mutableStateOf("")
         }
-    LazyColumn(Modifier.fillMaxSize().padding(top = 10.dp)) {
+    LazyColumn(
+        Modifier
+            .fillMaxSize()
+            .padding(top = 10.dp)) {
         itemsIndexed(tweets) { index, tweet ->
             TweetListItem(
                 tweet,
-                previewImageState,
-                previewImageUrlState,
-                onSaveComment = onSaveComment
+                onSaveComment = onSaveComment,
+                onClickAvatar = {
+                    previewImageUrlState.value = tweet.avatar
+                }
             )
             Spacer(modifier = Modifier.height(8.dp))
             if (index == tweets.size - 1) {
@@ -76,8 +76,8 @@ fun TweetListScreen(tweets: List<TweetUiState>, onSaveComment: (comment: String)
         }
     }
 
-    if (previewImageState.value && previewImageUrlState.value.isNotBlank()) {
-        PreviewImage(url = previewImageUrlState.value) { previewImageState.value = false }
+    if (previewImageUrlState.value.isNotBlank()) {
+        PreviewImage(url = previewImageUrlState.value) { previewImageUrlState.value = "" }
     }
 }
 

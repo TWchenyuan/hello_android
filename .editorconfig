@@ -4,3 +4,4 @@ root = true
 ktlint_code_style = android_studio
 ktlint_standard_no-wildcard-imports = disabled
 ktlint_function_naming_ignore_when_annotated_with = Composable
+ktlint_variable_name_allowed_pattern = _.*
