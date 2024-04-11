@@ -38,10 +38,10 @@ import com.thoughtworks.androidtrain.tweet.TweetUiState
 @Composable
 fun TweetListItem(
     tweet: TweetUiState,
-    showCommentEditorState: MutableState<Boolean> = remember { mutableStateOf(false) },
     onSaveComment: (comment: String) -> Unit = {},
     onClickAvatar: (url: String) -> Unit = {},
 ) {
+    val showCommentEditorState = remember { mutableStateOf(false) }
     Row(
         modifier =
         Modifier
