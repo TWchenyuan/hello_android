@@ -21,8 +21,7 @@ object TweetNetworkModule {
 
     @Provides
     @Singleton
-    fun provideTweetService(retrofit: Retrofit): TweetService =
-        retrofit.create(TweetService::class.java)
+    fun provideTweetService(retrofit: Retrofit): TweetService = retrofit.create(TweetService::class.java)
 }
 
 const val BASE_URL: String = "https://raw.githubusercontent.com"

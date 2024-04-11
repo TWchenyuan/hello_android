@@ -15,11 +15,7 @@ class LongTextFragment(
 ) : Fragment() {
     private lateinit var textView: TextView
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_long_text, container, false)
         textView = view.findViewById(R.id.text_view)
         return view

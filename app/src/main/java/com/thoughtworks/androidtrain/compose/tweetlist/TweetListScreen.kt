@@ -55,7 +55,8 @@ fun TweetListScreen(tweets: List<TweetUiState>, onSaveComment: (comment: String)
     LazyColumn(
         Modifier
             .fillMaxSize()
-            .padding(top = 10.dp)) {
+            .padding(top = 10.dp)
+    ) {
         itemsIndexed(tweets) { index, tweet ->
             TweetListItem(
                 tweet,

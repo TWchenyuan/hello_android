@@ -41,7 +41,7 @@ fun TweetListItem(
     showCommentEditorState: MutableState<Boolean> = remember { mutableStateOf(false) },
     commentState: MutableState<String> = remember { mutableStateOf("") },
     onSaveComment: (comment: String) -> Unit = {},
-    onClickAvatar: (url: String) -> Unit = {},
+    onClickAvatar: (url: String) -> Unit = {}
 ) {
     Row(
         modifier =
@@ -98,11 +98,7 @@ fun TweetListItem(
 }
 
 @Composable
-fun EditComment(
-    commentState: MutableState<String>,
-    onSave: (comment: String) -> Unit,
-    onCancel: () -> Unit
-) {
+fun EditComment(commentState: MutableState<String>, onSave: (comment: String) -> Unit, onCancel: () -> Unit) {
     BasicTextField(
         value = commentState.value,
         onValueChange = {

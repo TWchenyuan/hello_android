@@ -32,7 +32,7 @@ constructor(
     private val _tweetLiveData = MutableLiveData<List<Tweet>>()
     private val _tweetListUiState = MutableStateFlow(emptyList<TweetUiState>())
 
-    val tweetsLiveData = _tweetLiveData
+    val tweetsLiveData get() = _tweetLiveData
     val tweetListUiState: StateFlow<List<TweetUiState>> = _tweetListUiState.asStateFlow()
 
     val errorMessage: LiveData<String?>
